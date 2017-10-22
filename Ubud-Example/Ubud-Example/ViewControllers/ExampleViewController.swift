@@ -13,9 +13,8 @@ private let reuseIdentifier = "ExampleCell"
 final class ExampleViewController: UITableViewController {
 
     init() {
-        super.init(nibName: nil, bundle: nil)
+        super.init(style: .grouped)
         self.title = "Example"
-        self.view.backgroundColor = .white
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -24,7 +23,6 @@ final class ExampleViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.rowHeight = 55.0
@@ -41,8 +39,7 @@ final class ExampleViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (indexPath.row == 0) {
-            
-        }
+        let galleryViewController = GalleryImagesViewController()
+        navigationController?.pushViewController(galleryViewController, animated: true)
     }
 }

@@ -11,6 +11,9 @@
 		D51B75131F9CB6D900223477 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D51B75121F9CB6D900223477 /* Assets.xcassets */; };
 		D51B75161F9CB6D900223477 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51B75141F9CB6D900223477 /* LaunchScreen.storyboard */; };
 		D51B75211F9CB6DA00223477 /* UbudExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B75201F9CB6DA00223477 /* UbudExampleTests.swift */; };
+		D557BAD71F9D7A120006E5F9 /* GalleryImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D557BAD61F9D7A120006E5F9 /* GalleryImagesViewController.swift */; };
+		D557BADB1F9D7A7C0006E5F9 /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D557BAD91F9D7A7C0006E5F9 /* GalleryCell.swift */; };
+		D557BADC1F9D7A7C0006E5F9 /* GalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D557BADA1F9D7A7C0006E5F9 /* GalleryCell.xib */; };
 		D575D4FA1F9CB949004E0894 /* Ubud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D575D4F91F9CB949004E0894 /* Ubud.framework */; };
 		D575D4FB1F9CB949004E0894 /* Ubud.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D575D4F91F9CB949004E0894 /* Ubud.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D575D5041F9CBC55004E0894 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D575D5031F9CBC54004E0894 /* ExampleViewController.swift */; };
@@ -49,6 +52,9 @@
 		D51B751C1F9CB6DA00223477 /* UbudExample.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UbudExample.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51B75201F9CB6DA00223477 /* UbudExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudExampleTests.swift; sourceTree = "<group>"; };
 		D51B75221F9CB6DA00223477 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D557BAD61F9D7A120006E5F9 /* GalleryImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImagesViewController.swift; sourceTree = "<group>"; };
+		D557BAD91F9D7A7C0006E5F9 /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
+		D557BADA1F9D7A7C0006E5F9 /* GalleryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GalleryCell.xib; sourceTree = "<group>"; };
 		D575D4F91F9CB949004E0894 /* Ubud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Ubud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D575D5031F9CBC54004E0894 /* ExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExampleViewController.swift; path = "Ubud-Example/ViewControllers/ExampleViewController.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -95,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				D575D5051F9CBD85004E0894 /* ViewControllers */,
+				D557BAD81F9D7A660006E5F9 /* Views */,
 				D575D5011F9CBB09004E0894 /* Resource */,
 				D51B750B1F9CB6D900223477 /* AppDelegate.swift */,
 			);
@@ -108,6 +115,15 @@
 				D51B75221F9CB6DA00223477 /* Info.plist */,
 			);
 			path = "Ubud-ExampleTests";
+			sourceTree = "<group>";
+		};
+		D557BAD81F9D7A660006E5F9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D557BAD91F9D7A7C0006E5F9 /* GalleryCell.swift */,
+				D557BADA1F9D7A7C0006E5F9 /* GalleryCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D575D5011F9CBB09004E0894 /* Resource */ = {
@@ -124,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				D575D5031F9CBC54004E0894 /* ExampleViewController.swift */,
+				D557BAD61F9D7A120006E5F9 /* GalleryImagesViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -213,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D51B75161F9CB6D900223477 /* LaunchScreen.storyboard in Resources */,
+				D557BADC1F9D7A7C0006E5F9 /* GalleryCell.xib in Resources */,
 				D51B75131F9CB6D900223477 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,6 +249,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D557BADB1F9D7A7C0006E5F9 /* GalleryCell.swift in Sources */,
+				D557BAD71F9D7A120006E5F9 /* GalleryImagesViewController.swift in Sources */,
 				D51B750C1F9CB6D900223477 /* AppDelegate.swift in Sources */,
 				D575D5041F9CBC55004E0894 /* ExampleViewController.swift in Sources */,
 			);

@@ -9,7 +9,12 @@
 /* Begin PBXBuildFile section */
 		D51B74B11F9CA9FB00223477 /* Ubud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D51B74A71F9CA9FB00223477 /* Ubud.framework */; };
 		D51B74B61F9CA9FB00223477 /* UbudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B74B51F9CA9FB00223477 /* UbudTests.swift */; };
-		D51B74B81F9CA9FB00223477 /* Ubud.h in Headers */ = {isa = PBXBuildFile; fileRef = D51B74AA1F9CA9FB00223477 /* Ubud.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D59C660D1F9CCBC600C37F51 /* UbudController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C660C1F9CCBC600C37F51 /* UbudController.swift */; };
+		D59C66111F9CCEC100C37F51 /* UbudImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C66101F9CCEC100C37F51 /* UbudImage.swift */; };
+		D59C66131F9CD20F00C37F51 /* UbudConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C66121F9CD20F00C37F51 /* UbudConfig.swift */; };
+		D59C66151F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C66141F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift */; };
+		D59C66171F9CF90400C37F51 /* UbudCollectionPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C66161F9CF90400C37F51 /* UbudCollectionPhotoCell.swift */; };
+		D59C661C1F9CFDB500C37F51 /* UIImageView+Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C661B1F9CFDB500C37F51 /* UIImageView+Downloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,11 +29,16 @@
 
 /* Begin PBXFileReference section */
 		D51B74A71F9CA9FB00223477 /* Ubud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Ubud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D51B74AA1F9CA9FB00223477 /* Ubud.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ubud.h; sourceTree = "<group>"; };
 		D51B74AB1F9CA9FB00223477 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D51B74B01F9CA9FB00223477 /* UbudTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UbudTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51B74B51F9CA9FB00223477 /* UbudTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudTests.swift; sourceTree = "<group>"; };
 		D51B74B71F9CA9FB00223477 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D59C660C1F9CCBC600C37F51 /* UbudController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudController.swift; sourceTree = "<group>"; };
+		D59C66101F9CCEC100C37F51 /* UbudImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudImage.swift; sourceTree = "<group>"; };
+		D59C66121F9CD20F00C37F51 /* UbudConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudConfig.swift; sourceTree = "<group>"; };
+		D59C66141F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudCollectionFlowLayout.swift; sourceTree = "<group>"; };
+		D59C66161F9CF90400C37F51 /* UbudCollectionPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudCollectionPhotoCell.swift; sourceTree = "<group>"; };
+		D59C661B1F9CFDB500C37F51 /* UIImageView+Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+Downloader.swift"; path = "Ubud/Source/Extensions/UIImageView+Downloader.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +81,7 @@
 		D51B74A91F9CA9FB00223477 /* Ubud */ = {
 			isa = PBXGroup;
 			children = (
-				D51B74AA1F9CA9FB00223477 /* Ubud.h */,
+				D59C660B1F9CCBB400C37F51 /* Source */,
 				D51B74AB1F9CA9FB00223477 /* Info.plist */,
 			);
 			path = Ubud;
@@ -86,6 +96,28 @@
 			path = UbudTests;
 			sourceTree = "<group>";
 		};
+		D59C660B1F9CCBB400C37F51 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				D59C661A1F9CFDA700C37F51 /* Extensions */,
+				D59C660C1F9CCBC600C37F51 /* UbudController.swift */,
+				D59C66141F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift */,
+				D59C66161F9CF90400C37F51 /* UbudCollectionPhotoCell.swift */,
+				D59C66101F9CCEC100C37F51 /* UbudImage.swift */,
+				D59C66121F9CD20F00C37F51 /* UbudConfig.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		D59C661A1F9CFDA700C37F51 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D59C661B1F9CFDB500C37F51 /* UIImageView+Downloader.swift */,
+			);
+			name = Extensions;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -93,7 +125,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D51B74B81F9CA9FB00223477 /* Ubud.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +245,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D59C66171F9CF90400C37F51 /* UbudCollectionPhotoCell.swift in Sources */,
+				D59C66131F9CD20F00C37F51 /* UbudConfig.swift in Sources */,
+				D59C660D1F9CCBC600C37F51 /* UbudController.swift in Sources */,
+				D59C661C1F9CFDB500C37F51 /* UIImageView+Downloader.swift in Sources */,
+				D59C66111F9CCEC100C37F51 /* UbudImage.swift in Sources */,
+				D59C66151F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,8 +327,10 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME).h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -344,8 +383,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME).h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -371,7 +412,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.luqmanfauzi.Ubud.Ubud;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -395,6 +438,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.luqmanfauzi.Ubud.Ubud;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -403,6 +448,7 @@
 		D51B74BF1F9CA9FB00223477 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R2XF3NYPAG;
 				INFOPLIST_FILE = UbudTests/Info.plist;
@@ -417,6 +463,7 @@
 		D51B74C01F9CA9FB00223477 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R2XF3NYPAG;
 				INFOPLIST_FILE = UbudTests/Info.plist;
