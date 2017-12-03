@@ -25,8 +25,8 @@ final class GalleryImagesViewController: UICollectionViewController {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
         layout.minimumLineSpacing = 15.0
-        layout.minimumLineSpacing = 15.0
-        layout.itemSize = CGSize(width: 175.0, height: 175.0)
+        layout.minimumInteritemSpacing = 15.0
+        layout.itemSize = CGSize(width: 150.0, height: 150.0)
         layout.scrollDirection = .vertical
         super.init(collectionViewLayout: layout)
         self.title = "Example 1"
@@ -62,9 +62,23 @@ extension GalleryImagesViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        UbudConfig.shared.isStatusBarHidden = false
-        UbudConfig.shared.statusBarStyle = .lightContent
-        let previewVC = UbudController(images: images, selectedIndex: indexPath.item)
-        present(previewVC, animated: true, completion: nil)
+        UbudController.show(presentedBy: self, delegate: self, atIndex: indexPath.item)
+    }
+}
+
+extension GalleryImagesViewController: UbudControllerDelegate {
+
+    // MARK: - UbudControllerDelegate
+
+    func numberOfOPhotos(in controller: UbudController) -> Int {
+        return images.count
+    }
+
+    func photoImageForItem(in controller: UbudController, atIndex index: Int) -> UIImage? {
+        return images[index].image
+    }
+
+    func photoURLForItem(in controller: UbudController, atIndex index: Int) -> String? {
+        return nil
     }
 }

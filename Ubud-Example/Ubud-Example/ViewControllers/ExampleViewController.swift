@@ -25,7 +25,7 @@ final class ExampleViewController: UITableViewController {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.tableFooterView = UIView(frame: .zero)
-        tableView.rowHeight = 55.0
+        tableView.rowHeight = 50.0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
