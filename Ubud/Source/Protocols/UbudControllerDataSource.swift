@@ -8,6 +8,11 @@
 
 import UIKit
 
+public enum PhotoDataSource {
+    case image(UIImage)
+    case url(String)
+}
+
 public protocol UbudControllerDataSource: class {
 
     /// The number of photos
@@ -16,30 +21,11 @@ public protocol UbudControllerDataSource: class {
     /// - Returns: `Int`
     func numberOfOPhotos(in controller: UbudController) -> Int
 
-    /// The `UIImage` of item in particular `IndexPath`
+    /// The data source of image for particular `IndexPath`
     ///
     /// - Parameters:
     ///   - controller: `UbudController`
     ///   - index: `Int`
-    /// - Returns: `UIImage?`
-    func photoImageForItem(in controller: UbudController, atIndex index: Int) -> UIImage?
-
-    /// The `String` URL of item in particular `IndexPath`
-    ///
-    /// - Parameters:
-    ///   - controller: `UbudController`
-    ///   - index: `Int`
-    /// - Returns: `String?`
-    func photoURLForItem(in controller: UbudController, atIndex index: Int) -> String?
-}
-
-public extension UbudControllerDataSource {
-
-    func photoImageForItem(in controller: UbudController, atIndex index: Int) -> UIImage? {
-        return nil
-    }
-
-    func photoURLForItem(in controller: UbudController, atIndex index: Int) -> String? {
-        return nil
-    }
+    /// - Returns: `PhotoDataSource?`
+    func imageSourceForItem(in controller: UbudController, atIndex index: Int) -> PhotoDataSource
 }

@@ -13,13 +13,7 @@ private let reuseIdentifier = "GalleryCell"
 
 final class GalleryImagesViewController: UICollectionViewController {
 
-    private let images: [UbudImage] = [
-        UbudImage(image: UIImage(named: "ubud-sample-1")),
-        UbudImage(image: UIImage(named: "ubud-sample-2")),
-        UbudImage(image: UIImage(named: "ubud-sample-3")),
-        UbudImage(image: UIImage(named: "ubud-sample-4")),
-        UbudImage(image: UIImage(named: "ubud-sample-5"))
-    ]
+    private let images: [UIImage] = [#imageLiteral(resourceName: "ubud-sample-1"), #imageLiteral(resourceName: "ubud-sample-2"), #imageLiteral(resourceName: "ubud-sample-3"), #imageLiteral(resourceName: "ubud-sample-4"), #imageLiteral(resourceName: "ubud-sample-5")]
 
     init() {
         let layout = UICollectionViewFlowLayout()
@@ -55,9 +49,8 @@ extension GalleryImagesViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? GalleryCell else {
             fatalError("Cell not found")
         }
-        if let image = images[indexPath.item].image {
-            cell.configure(image: image)
-        }
+        let image = images[indexPath.item]
+        cell.configure(image: image)
         return cell
     }
 
@@ -74,12 +67,9 @@ extension GalleryImagesViewController: UbudControllerDataSource {
         return images.count
     }
 
-    func photoImageForItem(in controller: UbudController, atIndex index: Int) -> UIImage? {
-        return images[index].image
-    }
-
-    func photoURLForItem(in controller: UbudController, atIndex index: Int) -> String? {
-        return nil
+    func imageSourceForItem(in controller: UbudController, atIndex index: Int) -> PhotoDataSource {
+        let image = images[index]
+        return .image(image)
     }
 }
 

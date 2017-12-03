@@ -10,7 +10,6 @@
 		D51B74B11F9CA9FB00223477 /* Ubud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D51B74A71F9CA9FB00223477 /* Ubud.framework */; };
 		D51B74B61F9CA9FB00223477 /* UbudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B74B51F9CA9FB00223477 /* UbudTests.swift */; };
 		D59C660D1F9CCBC600C37F51 /* UbudController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C660C1F9CCBC600C37F51 /* UbudController.swift */; };
-		D59C66111F9CCEC100C37F51 /* UbudImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C66101F9CCEC100C37F51 /* UbudImage.swift */; };
 		D59C66151F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C66141F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift */; };
 		D59C66171F9CF90400C37F51 /* UbudCollectionPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C66161F9CF90400C37F51 /* UbudCollectionPhotoCell.swift */; };
 		D5B9D20A1FD3F0DA0061675A /* UbudControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B9D2091FD3F0DA0061675A /* UbudControllerDelegate.swift */; };
@@ -37,7 +36,6 @@
 		D51B74B51F9CA9FB00223477 /* UbudTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudTests.swift; sourceTree = "<group>"; };
 		D51B74B71F9CA9FB00223477 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D59C660C1F9CCBC600C37F51 /* UbudController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudController.swift; sourceTree = "<group>"; };
-		D59C66101F9CCEC100C37F51 /* UbudImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudImage.swift; sourceTree = "<group>"; };
 		D59C66141F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudCollectionFlowLayout.swift; sourceTree = "<group>"; };
 		D59C66161F9CF90400C37F51 /* UbudCollectionPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudCollectionPhotoCell.swift; sourceTree = "<group>"; };
 		D5B9D2091FD3F0DA0061675A /* UbudControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudControllerDelegate.swift; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 				D59C660C1F9CCBC600C37F51 /* UbudController.swift */,
 				D59C66141F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift */,
 				D59C66161F9CF90400C37F51 /* UbudCollectionPhotoCell.swift */,
-				D59C66101F9CCEC100C37F51 /* UbudImage.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -276,7 +273,6 @@
 				D5DC08431F9ECBDE00E2C6AD /* UbudTransitionAnimator.swift in Sources */,
 				D5B9D20C1FD3F0E60061675A /* UbudControllerDataSource.swift in Sources */,
 				D5F663901FA21957003A9FC0 /* UIImageView+Downloader.swift in Sources */,
-				D59C66111F9CCEC100C37F51 /* UbudImage.swift in Sources */,
 				D5B9D20A1FD3F0DA0061675A /* UbudControllerDelegate.swift in Sources */,
 				D59C66151F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift in Sources */,
 			);

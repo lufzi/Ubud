@@ -228,14 +228,17 @@ extension UbudController: UICollectionViewDataSource, UICollectionViewDelegate {
     // MARK: - UICollectionViewDelegate
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? UbudCollectionPhotoCell else {
+        guard
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? UbudCollectionPhotoCell,
+            let source = dataSource?.imageSourceForItem(in: self, atIndex: indexPath.item)
+        else {
             fatalError("UbudCollectionPhotoCell is not found.")
         }
-        if let imageURL = dataSource?.photoURLForItem(in: self, atIndex: indexPath.item) {
-            cell.loadImage(imageURL)
-        }
-        if let image = dataSource?.photoImageForItem(in: self, atIndex: indexPath.item) {
+        switch source {
+        case .image(let image):
             cell.configure(image: image)
+        case .url(let url):
+            cell.loadImage(url)
         }
         return cell
     }
