@@ -12,8 +12,9 @@ private let reuseIdentifier = "UbudCollectionPhotoCell"
 
 open class UbudController: UIViewController {
 
-    enum FocusState {
-        case active, inactive
+    private enum FocusState: CGFloat {
+        case active = 1.0
+        case inactive = 0
     }
 
     // MARK: - Private Properties
@@ -32,21 +33,10 @@ open class UbudController: UIViewController {
         return collectionView
     }()
 
-    private lazy var topContainerView: UIView = { [unowned self] in
-        let view = UIView()
-        view.alpha = 0
-        view.backgroundColor = .clear
-        view.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var topContainerView: UbudTopContainerView = { [unowned self] in
+        let view = UbudTopContainerView(dismissContent: .text("Dismiss"))
+        view.dismissButtonDidTap = self.dismissView
         return view
-    }()
-
-    private lazy var dismissButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Dismiss", for: .normal)
-        button.imageView?.contentMode = .scaleAspectFit
-        button.addTarget(self, action: #selector(self.didTapDismissButton), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
     }()
 
     private lazy var tapGesture: UITapGestureRecognizer = { [unowned self] in
@@ -111,62 +101,32 @@ open class UbudController: UIViewController {
 
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
         view.addSubview(collectionView)
         view.addSubview(topContainerView)
-        topContainerView.addSubview(dismissButton)
         setupConstraints()
-
-        /// Check if delegate provide custom dismiss button content
-        if let dismissContent = delegate?.dismissButtonContent(in: self) {
-            switch dismissContent {
-            case .text(let text):
-                dismissButton.setTitle(text, for: .normal)
-            case .image(let image):
-                /// Set button to square (width equal as height)
-                NSLayoutConstraint.activate([
-                    dismissButton.widthAnchor.constraint(equalTo: topContainerView.heightAnchor)
-                ])
-                dismissButton.setImage(image, for: .normal)
-            }
-        }
-
-        setIndexOnSelectedImage()
+        updateContentCellAtSelectedIndex()
     }
 
     private func setupConstraints() {
-        let collectionViewTopAnchor: NSLayoutYAxisAnchor
-        let collectionViewBottomAnchor: NSLayoutYAxisAnchor
-        let collectionViewLeadingAnchor: NSLayoutXAxisAnchor
-        let collectionViewTrailingAnchor: NSLayoutXAxisAnchor
         let topContainerViewTopAnchor: NSLayoutYAxisAnchor
         let topContainerViewLeadingAnchor: NSLayoutXAxisAnchor
         let topContainerViewTrailingAnchor: NSLayoutXAxisAnchor
+        let collectionViewTopAnchor: NSLayoutYAxisAnchor
+        let collectionViewBottomAnchor: NSLayoutYAxisAnchor
 
         if #available(iOS 11.0, *) {
-            collectionViewTopAnchor = view.safeAreaLayoutGuide.topAnchor
-            collectionViewBottomAnchor = view.safeAreaLayoutGuide.bottomAnchor
-            collectionViewLeadingAnchor = view.safeAreaLayoutGuide.leadingAnchor
-            collectionViewTrailingAnchor = view.safeAreaLayoutGuide.trailingAnchor
             topContainerViewTopAnchor = view.safeAreaLayoutGuide.topAnchor
             topContainerViewLeadingAnchor = view.safeAreaLayoutGuide.leadingAnchor
             topContainerViewTrailingAnchor = view.safeAreaLayoutGuide.trailingAnchor
+            collectionViewTopAnchor = view.safeAreaLayoutGuide.topAnchor
+            collectionViewBottomAnchor = view.safeAreaLayoutGuide.bottomAnchor
         } else {
-            collectionViewTopAnchor = view.topAnchor
-            collectionViewBottomAnchor = view.bottomAnchor
-            collectionViewLeadingAnchor = view.leadingAnchor
-            collectionViewTrailingAnchor = view.trailingAnchor
             topContainerViewTopAnchor = view.topAnchor
             topContainerViewLeadingAnchor = view.leadingAnchor
             topContainerViewTrailingAnchor = view.trailingAnchor
+            collectionViewTopAnchor = view.topAnchor
+            collectionViewBottomAnchor = view.bottomAnchor
         }
-
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: collectionViewTopAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: collectionViewLeadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: collectionViewTrailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: collectionViewBottomAnchor)
-        ])
 
         NSLayoutConstraint.activate([
             topContainerView.heightAnchor.constraint(equalToConstant: 70.0),
@@ -176,13 +136,19 @@ open class UbudController: UIViewController {
         ])
 
         NSLayoutConstraint.activate([
-            dismissButton.topAnchor.constraint(equalTo: topContainerView.topAnchor),
-            dismissButton.bottomAnchor.constraint(equalTo: topContainerView.bottomAnchor),
-            dismissButton.trailingAnchor.constraint(equalTo: topContainerView.trailingAnchor, constant: -15.0)
+            collectionView.topAnchor.constraint(equalTo: collectionViewTopAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: topContainerViewLeadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: topContainerViewTrailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: collectionViewBottomAnchor)
         ])
+
+        /// Check if delegate provide custom dismiss button content
+        if let dismissContent = delegate?.dismissButtonContent(in: self) {
+            topContainerView.configureDismissButton(content: dismissContent)
+        }
     }
 
-    @objc private func didTapDismissButton() {
+    @objc private func dismissView() {
         dismiss(animated: true, completion: nil)
     }
 
@@ -195,11 +161,11 @@ open class UbudController: UIViewController {
         focusState = updatedState
         UIView.animate(withDuration: 0.2) {
             /// Update alpha of container view
-            self.topContainerView.alpha = (updatedState == .active) ? 1.0 : 0
+            self.topContainerView.alpha = updatedState.rawValue
         }
     }
 
-    private func setIndexOnSelectedImage() {
+    private func updateContentCellAtSelectedIndex() {
         if selectedIndex != 0 {
             collectionView.performBatchUpdates({
                 let indexPath = IndexPath(item: selectedIndex, section: 0)
@@ -229,16 +195,16 @@ extension UbudController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? UbudCollectionPhotoCell,
-            let source = dataSource?.imageSourceForItem(in: self, atIndex: indexPath.item)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? UbudCollectionPhotoCell
         else {
             fatalError("UbudCollectionPhotoCell is not found.")
         }
-        switch source {
+        /// Configure image content
+        switch dataSource.imageSourceForItem(in: self, atIndex: indexPath.item) {
         case .image(let image):
-            cell.configure(image: image)
+            cell.configureImage(image)
         case .url(let url):
-            cell.loadImage(url)
+            cell.configureImage(url)
         }
         return cell
     }

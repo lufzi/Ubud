@@ -17,6 +17,7 @@ final class UbudCollectionPhotoCell: UICollectionViewCell {
         indicatorView.hidesWhenStopped = true
         return indicatorView
     }()
+
     private lazy var scrollView: UIScrollView = { [unowned self] in
         let scrollView = UIScrollView(frame: self.contentView.frame)
         scrollView.contentSize = CGSize(
@@ -32,6 +33,7 @@ final class UbudCollectionPhotoCell: UICollectionViewCell {
         scrollView.alwaysBounceHorizontal = false
         return scrollView
     }()
+
     private lazy var photoImageView: UIImageView = { [unowned self] in
         let imageView = UIImageView(frame: scrollView.frame)
         imageView.contentMode = .scaleAspectFit
@@ -50,12 +52,14 @@ final class UbudCollectionPhotoCell: UICollectionViewCell {
         super.init(coder: aDecoder)
     }
 
-    func configure(image: UIImage) {
+    // MARK: - Public Methods
+
+    public func configureImage(_ image: UIImage) {
         activityIndicator.stopAnimating()
         photoImageView.image = image
     }
 
-    func loadImage(_ url: String?, placeholder: UIImage? = nil) {
+    public func configureImage(_ url: String?, placeholder: UIImage? = nil) {
         guard let url = url, let imageURL = URL(string: url) else {
             if let placeholder = placeholder {
                 photoImageView.image = placeholder
@@ -79,6 +83,9 @@ final class UbudCollectionPhotoCell: UICollectionViewCell {
 }
 
 extension UbudCollectionPhotoCell: UIScrollViewDelegate {
+
+    // MARK: - UIScrollViewDelegate
+
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return photoImageView
     }
