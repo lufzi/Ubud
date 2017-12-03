@@ -1,0 +1,11 @@
+language: swift
+osx_image: xcode9.1
+
+env:
+   global:
+   - LANG=en_US.UTF-8
+
+   - PROJECT="Ubud.xcodeproj"
+   - IOS_SCHEME="Ubud"
+   - IOS_SDK=iphonesimulator10
+   
