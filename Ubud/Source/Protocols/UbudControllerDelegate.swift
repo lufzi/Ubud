@@ -8,18 +8,43 @@
 
 import UIKit
 
-public protocol UbudControllerDisplayDelegate: class {
-    func isStatusBarHidden() -> Bool
-    func statusBarStyle() -> UIStatusBarStyle
+public enum DismissButtonContent {
+    case image(UIImage)
+    case text(String)
 }
 
-public extension UbudControllerDisplayDelegate {
+public protocol UbudControllerDelegate: class {
 
-    func isStatusBarHidden() -> Bool {
+    /// `UIStatusBarStyle` display state of controller
+    ///
+    /// - Parameter controller: `UbudController`
+    /// - Returns: `Bool`
+    func statusBarHidden(in controller: UbudController) -> Bool
+
+    /// `UIStatusBarStyle` display style of controller
+    ///
+    /// - Parameter controller: `UbudController`
+    /// - Returns: `UIStatusBarStyle`
+    func statusBarStyle(in controller: UbudController) -> UIStatusBarStyle
+
+    /// The dismiss button of controller
+    ///
+    /// - Parameter controller: `UbudController`
+    /// - Returns: `DismissButtonContent`
+    func dismissButtonContent(in controller: UbudController) -> DismissButtonContent
+}
+
+public extension UbudControllerDelegate {
+
+    func statusBarHidden(in controller: UbudController) -> Bool {
         return false
     }
 
-    func statusBarStyle() -> UIStatusBarStyle {
-        return .default
+    func statusBarStyle(in controller: UbudController) -> UIStatusBarStyle {
+        return .lightContent
+    }
+
+    func dismissButtonContent(in controller: UbudController) -> DismissButtonContent {
+        return .text("Dismiss")
     }
 }

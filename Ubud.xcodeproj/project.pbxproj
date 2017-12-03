@@ -14,7 +14,7 @@
 		D59C66151F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C66141F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift */; };
 		D59C66171F9CF90400C37F51 /* UbudCollectionPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C66161F9CF90400C37F51 /* UbudCollectionPhotoCell.swift */; };
 		D5B9D20A1FD3F0DA0061675A /* UbudControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B9D2091FD3F0DA0061675A /* UbudControllerDelegate.swift */; };
-		D5B9D20C1FD3F0E60061675A /* UbudControllerDisplayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B9D20B1FD3F0E60061675A /* UbudControllerDisplayDelegate.swift */; };
+		D5B9D20C1FD3F0E60061675A /* UbudControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B9D20B1FD3F0E60061675A /* UbudControllerDataSource.swift */; };
 		D5DC08411F9ECA2600E2C6AD /* UbudPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DC08401F9ECA2600E2C6AD /* UbudPresentationController.swift */; };
 		D5DC08431F9ECBDE00E2C6AD /* UbudTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DC08421F9ECBDE00E2C6AD /* UbudTransitionAnimator.swift */; };
 		D5F663901FA21957003A9FC0 /* UIImageView+Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F6638F1FA21957003A9FC0 /* UIImageView+Downloader.swift */; };
@@ -41,7 +41,7 @@
 		D59C66141F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudCollectionFlowLayout.swift; sourceTree = "<group>"; };
 		D59C66161F9CF90400C37F51 /* UbudCollectionPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudCollectionPhotoCell.swift; sourceTree = "<group>"; };
 		D5B9D2091FD3F0DA0061675A /* UbudControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudControllerDelegate.swift; sourceTree = "<group>"; };
-		D5B9D20B1FD3F0E60061675A /* UbudControllerDisplayDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudControllerDisplayDelegate.swift; sourceTree = "<group>"; };
+		D5B9D20B1FD3F0E60061675A /* UbudControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudControllerDataSource.swift; sourceTree = "<group>"; };
 		D5DC08401F9ECA2600E2C6AD /* UbudPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudPresentationController.swift; sourceTree = "<group>"; };
 		D5DC08421F9ECBDE00E2C6AD /* UbudTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudTransitionAnimator.swift; sourceTree = "<group>"; };
 		D5F6638F1FA21957003A9FC0 /* UIImageView+Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+Downloader.swift"; path = "Ubud/Source/Extensions/UIImageView+Downloader.swift"; sourceTree = SOURCE_ROOT; };
@@ -120,7 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				D5B9D2091FD3F0DA0061675A /* UbudControllerDelegate.swift */,
-				D5B9D20B1FD3F0E60061675A /* UbudControllerDisplayDelegate.swift */,
+				D5B9D20B1FD3F0E60061675A /* UbudControllerDataSource.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -274,7 +274,7 @@
 				D5DC08411F9ECA2600E2C6AD /* UbudPresentationController.swift in Sources */,
 				D59C660D1F9CCBC600C37F51 /* UbudController.swift in Sources */,
 				D5DC08431F9ECBDE00E2C6AD /* UbudTransitionAnimator.swift in Sources */,
-				D5B9D20C1FD3F0E60061675A /* UbudControllerDisplayDelegate.swift in Sources */,
+				D5B9D20C1FD3F0E60061675A /* UbudControllerDataSource.swift in Sources */,
 				D5F663901FA21957003A9FC0 /* UIImageView+Downloader.swift in Sources */,
 				D59C66111F9CCEC100C37F51 /* UbudImage.swift in Sources */,
 				D5B9D20A1FD3F0DA0061675A /* UbudControllerDelegate.swift in Sources */,

@@ -62,13 +62,13 @@ extension GalleryImagesViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        UbudController.show(presentedBy: self, delegate: self, atIndex: indexPath.item)
+        UbudController.show(presentedBy: self, dataSource: self, delegate: self, atIndex: indexPath.item)
     }
 }
 
-extension GalleryImagesViewController: UbudControllerDelegate {
+extension GalleryImagesViewController: UbudControllerDataSource {
 
-    // MARK: - UbudControllerDelegate
+    // MARK: - UbudControllerDataSource
 
     func numberOfOPhotos(in controller: UbudController) -> Int {
         return images.count
@@ -81,4 +81,9 @@ extension GalleryImagesViewController: UbudControllerDelegate {
     func photoURLForItem(in controller: UbudController, atIndex index: Int) -> String? {
         return nil
     }
+}
+
+extension GalleryImagesViewController: UbudControllerDelegate {
+
+    // MARK: - UbudControllerDelegate
 }

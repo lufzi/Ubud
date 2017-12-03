@@ -28,26 +28,29 @@ open class UbudController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.addGestureRecognizer(self.tapGesture)
         return collectionView
     }()
 
     private lazy var topContainerView: UIView = { [unowned self] in
         let view = UIView()
+        view.alpha = 0
         view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    private lazy var closeButton: UIButton = {
+    private lazy var dismissButton: UIButton = {
         let button = UIButton()
+        button.setTitle("Dismiss", for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(self.didTapDismissButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Close", for: .normal)
-        button.addTarget(self, action: #selector(self.didTapCloseButton), for: .touchUpInside)
         return button
     }()
 
     private lazy var tapGesture: UITapGestureRecognizer = { [unowned self] in
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(updateFocusState))
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapContent))
         return gesture
     }()
 
@@ -55,19 +58,18 @@ open class UbudController: UIViewController {
         return UbudTransitionAnimator(duration: 0.5)
     }()
 
-    private weak var displayDelegate: UbudControllerDisplayDelegate?
-    private weak var delegate: UbudControllerDelegate!
+    private weak var delegate: UbudControllerDelegate?
+    private weak var dataSource: UbudControllerDataSource!
     private var presenting: UIViewController!
-    private var images: [UbudImage]!
     private var currentIndex: Int = 0
     private var selectedIndex: Int = 0
     private var selectedImage: UIImageView?
-    private var state: FocusState = .active
+    private var focusState: FocusState = .inactive
 
-    private init(presentedBy presenting: UIViewController, delegate: UbudControllerDelegate, displayDelegate: UbudControllerDisplayDelegate?) {
+    private init(presentedBy presenting: UIViewController, dataSource: UbudControllerDataSource, delegate: UbudControllerDelegate?) {
         self.presenting = presenting
+        self.dataSource = dataSource
         self.delegate = delegate
-        self.displayDelegate = displayDelegate
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -77,11 +79,11 @@ open class UbudController: UIViewController {
 
     // MARK: - Public Methods
 
-    open class func show(presentedBy presenting: UIViewController, delegate: UbudControllerDelegate, displayDelegate: UbudControllerDisplayDelegate? = nil, atIndex index: Int) {
+    open class func show(presentedBy presenting: UIViewController, dataSource: UbudControllerDataSource, delegate: UbudControllerDelegate? = nil, atIndex index: Int) {
         let controller = UbudController(
             presentedBy: presenting,
-            delegate: delegate,
-            displayDelegate: displayDelegate
+            dataSource: dataSource,
+            delegate: delegate
         )
         controller.present(selectedIndex: index)
     }
@@ -89,9 +91,6 @@ open class UbudController: UIViewController {
     override open func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        [collectionView, topContainerView].forEach { view.addSubview($0) }
-        topContainerView.addSubview(closeButton)
-        collectionView.addGestureRecognizer(tapGesture)
     }
 
     open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -103,48 +102,109 @@ open class UbudController: UIViewController {
     }
 
     open override var prefersStatusBarHidden: Bool {
-        return displayDelegate?.isStatusBarHidden() ?? false
+        return delegate?.statusBarHidden(in: self) ?? false
     }
 
     open override var preferredStatusBarStyle: UIStatusBarStyle {
-        return displayDelegate?.statusBarStyle() ?? .default
+        return delegate?.statusBarStyle(in: self) ?? .lightContent
     }
 
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+
+        view.addSubview(collectionView)
+        view.addSubview(topContainerView)
+        topContainerView.addSubview(dismissButton)
+        setupConstraints()
+
+        /// Check if delegate provide custom dismiss button content
+        if let dismissContent = delegate?.dismissButtonContent(in: self) {
+            switch dismissContent {
+            case .text(let text):
+                dismissButton.setTitle(text, for: .normal)
+            case .image(let image):
+                /// Set button to square (width equal as height)
+                NSLayoutConstraint.activate([
+                    dismissButton.widthAnchor.constraint(equalTo: topContainerView.heightAnchor)
+                ])
+                dismissButton.setImage(image, for: .normal)
+            }
+        }
+
+        setIndexOnSelectedImage()
+    }
+
+    private func setupConstraints() {
+        let collectionViewTopAnchor: NSLayoutYAxisAnchor
+        let collectionViewBottomAnchor: NSLayoutYAxisAnchor
+        let collectionViewLeadingAnchor: NSLayoutXAxisAnchor
+        let collectionViewTrailingAnchor: NSLayoutXAxisAnchor
+        let topContainerViewTopAnchor: NSLayoutYAxisAnchor
+        let topContainerViewLeadingAnchor: NSLayoutXAxisAnchor
+        let topContainerViewTrailingAnchor: NSLayoutXAxisAnchor
+
+        if #available(iOS 11.0, *) {
+            collectionViewTopAnchor = view.safeAreaLayoutGuide.topAnchor
+            collectionViewBottomAnchor = view.safeAreaLayoutGuide.bottomAnchor
+            collectionViewLeadingAnchor = view.safeAreaLayoutGuide.leadingAnchor
+            collectionViewTrailingAnchor = view.safeAreaLayoutGuide.trailingAnchor
+            topContainerViewTopAnchor = view.safeAreaLayoutGuide.topAnchor
+            topContainerViewLeadingAnchor = view.safeAreaLayoutGuide.leadingAnchor
+            topContainerViewTrailingAnchor = view.safeAreaLayoutGuide.trailingAnchor
+        } else {
+            collectionViewTopAnchor = view.topAnchor
+            collectionViewBottomAnchor = view.bottomAnchor
+            collectionViewLeadingAnchor = view.leadingAnchor
+            collectionViewTrailingAnchor = view.trailingAnchor
+            topContainerViewTopAnchor = view.topAnchor
+            topContainerViewLeadingAnchor = view.leadingAnchor
+            topContainerViewTrailingAnchor = view.trailingAnchor
+        }
+
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            collectionView.topAnchor.constraint(equalTo: collectionViewTopAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: collectionViewLeadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: collectionViewTrailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: collectionViewBottomAnchor)
         ])
+
         NSLayoutConstraint.activate([
             topContainerView.heightAnchor.constraint(equalToConstant: 70.0),
-            topContainerView.topAnchor.constraint(equalTo: view.topAnchor),
-            topContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            topContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            topContainerView.topAnchor.constraint(equalTo: topContainerViewTopAnchor),
+            topContainerView.leadingAnchor.constraint(equalTo: topContainerViewLeadingAnchor),
+            topContainerView.trailingAnchor.constraint(equalTo: topContainerViewTrailingAnchor)
         ])
+
         NSLayoutConstraint.activate([
-            closeButton.bottomAnchor.constraint(equalTo: topContainerView.bottomAnchor, constant: -8.0),
-            closeButton.trailingAnchor.constraint(equalTo: topContainerView.trailingAnchor, constant: -15.0)
+            dismissButton.topAnchor.constraint(equalTo: topContainerView.topAnchor),
+            dismissButton.bottomAnchor.constraint(equalTo: topContainerView.bottomAnchor),
+            dismissButton.trailingAnchor.constraint(equalTo: topContainerView.trailingAnchor, constant: -15.0)
         ])
+    }
+
+    @objc private func didTapDismissButton() {
+        dismiss(animated: true, completion: nil)
+    }
+
+    @objc private func didTapContent() {
+        updateFocusState()
+    }
+
+    @objc private func updateFocusState() {
+        let updatedState: FocusState = (focusState == .active) ? .inactive : .active
+        focusState = updatedState
+        UIView.animate(withDuration: 0.2) {
+            /// Update alpha of container view
+            self.topContainerView.alpha = (updatedState == .active) ? 1.0 : 0
+        }
+    }
+
+    private func setIndexOnSelectedImage() {
         if selectedIndex != 0 {
             collectionView.performBatchUpdates({
                 let indexPath = IndexPath(item: selectedIndex, section: 0)
                 collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
             }, completion: nil)
-        }
-    }
-
-    @objc private func didTapCloseButton() {
-        dismiss(animated: true, completion: nil)
-    }
-
-    @objc private func updateFocusState() {
-        let isActive: Bool = (state == .active)
-        UIView.animate(withDuration: 0.2) {
-            self.closeButton.alpha = isActive ? 0 : 1.0
-            self.state = isActive ? .inactive : .active
         }
     }
 
@@ -162,7 +222,7 @@ extension UbudController: UICollectionViewDataSource, UICollectionViewDelegate {
     // MARK: - UICollectionViewDataSource
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return delegate?.numberOfOPhotos(in: self) ?? 0
+        return dataSource?.numberOfOPhotos(in: self) ?? 0
     }
 
     // MARK: - UICollectionViewDelegate
@@ -171,10 +231,10 @@ extension UbudController: UICollectionViewDataSource, UICollectionViewDelegate {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? UbudCollectionPhotoCell else {
             fatalError("UbudCollectionPhotoCell is not found.")
         }
-        if let imageURL = delegate?.photoURLForItem(in: self, atIndex: indexPath.item) {
+        if let imageURL = dataSource?.photoURLForItem(in: self, atIndex: indexPath.item) {
             cell.loadImage(imageURL)
         }
-        if let image = delegate?.photoImageForItem(in: self, atIndex: indexPath.item) {
+        if let image = dataSource?.photoImageForItem(in: self, atIndex: indexPath.item) {
             cell.configure(image: image)
         }
         return cell
