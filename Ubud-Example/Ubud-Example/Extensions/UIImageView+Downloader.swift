@@ -1,28 +1,23 @@
 //
 //  UIImageView+Downloader.swift
-//  Ubud
+//  Ubud-Example
 //
-//  Created by Luqman Fauzi on 23/10/2017.
+//  Created by Luqman Fauzi on 10/12/2017.
 //  Copyright © 2017 Luqman Fauzi. All rights reserved.
 //
 
 import UIKit
 
-internal extension UIImageView {
+private let cache = NSCache<NSString, UIImage>()
 
-    /// Download and cache image
-    /// The cache mecanism is on memory only.
-    ///
-    /// - Parameters:
-    ///   - url: `String`
-    ///   - defaultImage: `UIImage`
-    ///   - completion: hanler upon got the image
+extension UIImageView {
+
     func download(url: URL, defaultImage: UIImage = UIImage(), completion: ((_ image: UIImage) -> Void)?) {
 
         let urlString = url.absoluteString
-        let cacheKey = urlString
+        let cacheKey = urlString as NSString
 
-        if let cachedImage = ImageCache.shared.get(key: cacheKey) {
+        if let cachedImage = cache.object(forKey: cacheKey) {
             /// Return cached image
             completion?(cachedImage)
         } else {
@@ -43,7 +38,7 @@ internal extension UIImageView {
                 }
                 DispatchQueue.main.sync (execute: {
                     /// Set the downloaded image
-                    ImageCache.shared.set(key: cacheKey, image: downloadedImage)
+                    cache.setObject(downloadedImage, forKey: cacheKey)
                     completion?(downloadedImage)
                 })
             })

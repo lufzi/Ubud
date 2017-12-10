@@ -1,29 +1,26 @@
 //
-//  GalleryImagesViewController.swift
+//  RemoteResourceViewController.swift
 //  Ubud-Example
 //
-//  Created by Luqman Fauzi on 23/10/2017.
+//  Created by Luqman Fauzi on 10/12/2017.
 //  Copyright © 2017 Luqman Fauzi. All rights reserved.
 //
 
 import UIKit
 import Ubud
 
-private let reuseIdentifier = "GalleryCell"
+private let reuseIdentifier = "ImageCell"
 
-final class GalleryImagesViewController: UICollectionViewController {
+final class RemoteResourceViewController: UICollectionViewController {
 
-    private let images: [UIImage] = [#imageLiteral(resourceName: "ubud-sample-1"), #imageLiteral(resourceName: "ubud-sample-2"), #imageLiteral(resourceName: "ubud-sample-3"), #imageLiteral(resourceName: "ubud-sample-4"), #imageLiteral(resourceName: "ubud-sample-5")]
+    private lazy var urls: [ImageURL] = {
+        return URL.generateRandomImageURLs(count: 20)
+    }()
 
     init() {
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
-        layout.minimumLineSpacing = 15.0
-        layout.minimumInteritemSpacing = 15.0
-        layout.itemSize = CGSize(width: 150.0, height: 150.0)
-        layout.scrollDirection = .vertical
+        let layout = ImagesFlowLayout()
         super.init(collectionViewLayout: layout)
-        self.title = "Example 1"
+        self.title = "Image URLs"
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -39,18 +36,18 @@ final class GalleryImagesViewController: UICollectionViewController {
     }
 }
 
-extension GalleryImagesViewController {
+extension RemoteResourceViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return urls.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? GalleryCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? ImageCell else {
             fatalError("Cell not found")
         }
-        let image = images[indexPath.item]
-        cell.configure(image: image)
+        let url = urls[indexPath.item]
+        cell.configure(url: url.thumbnailURL, indexPath: indexPath)
         return cell
     }
 
@@ -59,21 +56,21 @@ extension GalleryImagesViewController {
     }
 }
 
-extension GalleryImagesViewController: UbudControllerDataSource {
+extension RemoteResourceViewController: UbudControllerDataSource {
 
     // MARK: - UbudControllerDataSource
 
     func numberOfOPhotos(in controller: UbudController) -> Int {
-        return images.count
+        return urls.count
     }
 
     func imageSourceForItem(in controller: UbudController, atIndex index: Int) -> PhotoDataSource {
-        let image = images[index]
-        return .image(image)
+        let imageURL = urls[index].url.absoluteString
+        return .url(imageURL)
     }
 }
 
-extension GalleryImagesViewController: UbudControllerDelegate {
+extension RemoteResourceViewController: UbudControllerDelegate {
 
     // MARK: - UbudControllerDelegate
 }
