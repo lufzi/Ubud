@@ -20,8 +20,7 @@ open class UbudController: UIViewController {
     // MARK: - Private Properties
 
     private lazy var collectionView: UICollectionView = { [unowned self] in
-        let layout = UbudCollectionFlowLayout(size: UIScreen.main.bounds.size)
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
         collectionView.register(UbudCollectionPhotoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
@@ -99,12 +98,20 @@ open class UbudController: UIViewController {
         return delegate?.statusBarStyle(in: self) ?? .lightContent
     }
 
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //// Setup new collection flow layout after the VC is being displayed.
+        let layout = UbudCollectionFlowLayout(collectionViewSize: collectionView.bounds.size)
+        collectionView.setCollectionViewLayout(layout, animated: false)
+        /// Update current content to a content of selected index.
+        updateContentCellAtSelectedIndex()
+    }
+
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         view.addSubview(collectionView)
         view.addSubview(topContainerView)
         setupConstraints()
-        updateContentCellAtSelectedIndex()
     }
 
     private func setupConstraints() {
