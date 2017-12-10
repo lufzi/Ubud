@@ -12,8 +12,9 @@ import Ubud
 private let reuseIdentifier = "ImageCell"
 
 final class RemoteResourceViewController: UICollectionViewController {
+
     private lazy var urls: [ImageURL] = {
-        return URL.generateRandomImageURLs()
+        return URL.generateRandomImageURLs(count: 20)
     }()
 
     init() {

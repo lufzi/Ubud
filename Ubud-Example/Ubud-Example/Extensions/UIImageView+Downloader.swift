@@ -8,24 +8,40 @@
 
 import UIKit
 
+private let cache = NSCache<NSString, UIImage>()
+
 extension UIImageView {
 
-    func download(_ url: URL, completion: @escaping (_ image: UIImage?) -> Void) {
+    func download(url: URL, defaultImage: UIImage = UIImage(), completion: ((_ image: UIImage) -> Void)?) {
 
-        let config = URLSessionConfiguration.default
-        config.requestCachePolicy = .reloadIgnoringLocalCacheData
-        config.urlCache = nil
+        let urlString = url.absoluteString
+        let cacheKey = urlString as NSString
 
-        let session = URLSession(configuration: config)
-
-        let dataTask = session.dataTask(with: url) { (data, _, error) in
-            if error != nil {
-                completion(nil)
-            } else if let data = data, let image = UIImage(data: data) {
-                completion(image)
-            }
+        if let cachedImage = cache.object(forKey: cacheKey) {
+            /// Return cached image
+            completion?(cachedImage)
+        } else {
+            DispatchQueue.global().async (execute: {
+                guard let url = URL(string: urlString) else {
+                    /// Invalid URL
+                    DispatchQueue.main.sync(execute: {
+                        completion?(defaultImage)
+                    })
+                    return
+                }
+                guard let data = try? Data(contentsOf: url), let downloadedImage = UIImage(data: data) else {
+                    /// Invalid raw image data
+                    DispatchQueue.main.sync(execute: {
+                        completion?(defaultImage)
+                    })
+                    return
+                }
+                DispatchQueue.main.sync (execute: {
+                    /// Set the downloaded image
+                    cache.setObject(downloadedImage, forKey: cacheKey)
+                    completion?(downloadedImage)
+                })
+            })
         }
-
-        dataTask.resume()
     }
 }

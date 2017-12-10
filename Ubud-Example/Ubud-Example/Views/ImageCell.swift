@@ -24,7 +24,8 @@ final class ImageCell: UICollectionViewCell {
 
     func configure(url: URL, indexPath: IndexPath) {
         activityIndicator.startAnimating()
-        imageView.download(url, completion: { [unowned self] image in
+        imageView.image = nil
+        imageView.download(url: url, completion: { [unowned self] image in
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
                 self.imageView.image = image
