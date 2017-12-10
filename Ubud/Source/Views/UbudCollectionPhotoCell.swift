@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class UbudCollectionPhotoCell: UICollectionViewCell {
+final internal class UbudCollectionPhotoCell: UICollectionViewCell {
 
     private lazy var activityIndicator: UIActivityIndicatorView = { [unowned self] in
         let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
@@ -54,30 +54,24 @@ final class UbudCollectionPhotoCell: UICollectionViewCell {
 
     // MARK: - Public Methods
 
-    public func configureImage(_ image: UIImage) {
+    func configureImage(_ image: UIImage) {
         activityIndicator.stopAnimating()
         photoImageView.image = image
     }
 
-    public func configureImage(_ url: String?, placeholder: UIImage? = nil) {
+    func configureImage(_ url: String?, placeholder: UIImage? = nil) {
         guard let url = url, let imageURL = URL(string: url) else {
+            /// Set photo as provided default image, if any.
             if let placeholder = placeholder {
                 photoImageView.image = placeholder
             }
             return
         }
+        photoImageView.image = nil
         activityIndicator.startAnimating()
-        photoImageView.download(imageURL, completion: { [unowned self] (image) in
-            DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                if let image = image {
-                    self.photoImageView.image = image
-                } else {
-                    if let placeholder = placeholder {
-                        self.photoImageView.image = placeholder
-                    }
-                }
-            }
+        photoImageView.download(url: imageURL, completion: { [unowned self] (image) in
+            self.activityIndicator.stopAnimating()
+            self.photoImageView.image = image
         })
     }
 }

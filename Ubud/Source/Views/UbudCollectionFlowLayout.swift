@@ -8,17 +8,17 @@
 
 import UIKit
 
-open class UbudCollectionFlowLayout: UICollectionViewFlowLayout {
+internal final class UbudCollectionFlowLayout: UICollectionViewFlowLayout {
 
-    public init(size: CGSize) {
+    init(collectionViewSize: CGSize) {
         super.init()
+        itemSize = collectionViewSize
         minimumLineSpacing = 0
         minimumInteritemSpacing = 0
         scrollDirection = .horizontal
-        itemSize = size
     }
 
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 }
