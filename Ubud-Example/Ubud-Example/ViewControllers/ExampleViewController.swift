@@ -14,7 +14,7 @@ final class ExampleViewController: UITableViewController {
 
     init() {
         super.init(style: .grouped)
-        self.title = "Example"
+        self.title = "Ubud 🏞"
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -23,6 +23,12 @@ final class ExampleViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: nil, action: nil)
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
+
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.rowHeight = 50.0
@@ -34,12 +40,13 @@ final class ExampleViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        cell.textLabel?.text = "Example 1"
+        cell.textLabel?.text = "Local Resource Sample"
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let galleryViewController = GalleryImagesViewController()
-        navigationController?.pushViewController(galleryViewController, animated: true)
+        let localResourceViewController = LocalResourceViewController()
+        navigationController?.pushViewController(localResourceViewController, animated: true)
     }
 }

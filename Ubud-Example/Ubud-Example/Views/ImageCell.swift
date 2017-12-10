@@ -1,5 +1,5 @@
 //
-//  GalleryCell.swift
+//  ImageCell.swift
 //  Ubud-Example
 //
 //  Created by Luqman Fauzi on 23/10/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class GalleryCell: UICollectionViewCell {
+final class ImageCell: UICollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!
 

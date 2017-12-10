@@ -1,5 +1,5 @@
 //
-//  GalleryImagesViewController.swift
+//  LocalResourceViewController.swift
 //  Ubud-Example
 //
 //  Created by Luqman Fauzi on 23/10/2017.
@@ -9,21 +9,18 @@
 import UIKit
 import Ubud
 
-private let reuseIdentifier = "GalleryCell"
+private let reuseIdentifier = "ImageCell"
 
-final class GalleryImagesViewController: UICollectionViewController {
+final class LocalResourceViewController: UICollectionViewController {
 
-    private let images: [UIImage] = [#imageLiteral(resourceName: "ubud-sample-1"), #imageLiteral(resourceName: "ubud-sample-2"), #imageLiteral(resourceName: "ubud-sample-3"), #imageLiteral(resourceName: "ubud-sample-4"), #imageLiteral(resourceName: "ubud-sample-5")]
+    private lazy var images: [UIImage] = {
+        return UIImage.generateRandomImages(count: 15)
+    }()
 
     init() {
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
-        layout.minimumLineSpacing = 15.0
-        layout.minimumInteritemSpacing = 15.0
-        layout.itemSize = CGSize(width: 150.0, height: 150.0)
-        layout.scrollDirection = .vertical
+        let layout = ImagesFlowLayout()
         super.init(collectionViewLayout: layout)
-        self.title = "Example 1"
+        self.title = "Local Images"
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -39,14 +36,14 @@ final class GalleryImagesViewController: UICollectionViewController {
     }
 }
 
-extension GalleryImagesViewController {
+extension LocalResourceViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? GalleryCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? ImageCell else {
             fatalError("Cell not found")
         }
         let image = images[indexPath.item]
@@ -59,7 +56,7 @@ extension GalleryImagesViewController {
     }
 }
 
-extension GalleryImagesViewController: UbudControllerDataSource {
+extension LocalResourceViewController: UbudControllerDataSource {
 
     // MARK: - UbudControllerDataSource
 
@@ -73,7 +70,7 @@ extension GalleryImagesViewController: UbudControllerDataSource {
     }
 }
 
-extension GalleryImagesViewController: UbudControllerDelegate {
+extension LocalResourceViewController: UbudControllerDelegate {
 
     // MARK: - UbudControllerDelegate
 }
