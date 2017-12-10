@@ -21,6 +21,8 @@
 		D5A10BCC1FDD5BB7005B7474 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A10BCB1FDD5BB7005B7474 /* Int+Random.swift */; };
 		D5A10BCE1FDD5BCB005B7474 /* UIImage+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A10BCD1FDD5BCB005B7474 /* UIImage+Random.swift */; };
 		D5A10BD21FDD5D28005B7474 /* RemoteResourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A10BD11FDD5D28005B7474 /* RemoteResourceViewController.swift */; };
+		D5A10BD41FDD5FB0005B7474 /* URL+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A10BD31FDD5FB0005B7474 /* URL+Random.swift */; };
+		D5A10BD81FDD677E005B7474 /* UIImageView+Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A10BD71FDD677E005B7474 /* UIImageView+Downloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		D5A10BCB1FDD5BB7005B7474 /* Int+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Random.swift"; sourceTree = "<group>"; };
 		D5A10BCD1FDD5BCB005B7474 /* UIImage+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Random.swift"; sourceTree = "<group>"; };
 		D5A10BD11FDD5D28005B7474 /* RemoteResourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceViewController.swift; sourceTree = "<group>"; };
+		D5A10BD31FDD5FB0005B7474 /* URL+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Random.swift"; sourceTree = "<group>"; };
+		D5A10BD71FDD677E005B7474 /* UIImageView+Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Downloader.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +165,8 @@
 			children = (
 				D5A10BCB1FDD5BB7005B7474 /* Int+Random.swift */,
 				D5A10BCD1FDD5BCB005B7474 /* UIImage+Random.swift */,
+				D5A10BD31FDD5FB0005B7474 /* URL+Random.swift */,
+				D5A10BD71FDD677E005B7474 /* UIImageView+Downloader.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -274,9 +280,11 @@
 				D5A10BC91FDD5104005B7474 /* ImagesFlowLayout.swift in Sources */,
 				D557BAD71F9D7A120006E5F9 /* LocalResourceViewController.swift in Sources */,
 				D5A10BCE1FDD5BCB005B7474 /* UIImage+Random.swift in Sources */,
+				D5A10BD81FDD677E005B7474 /* UIImageView+Downloader.swift in Sources */,
 				D51B750C1F9CB6D900223477 /* AppDelegate.swift in Sources */,
 				D5A10BCC1FDD5BB7005B7474 /* Int+Random.swift in Sources */,
 				D575D5041F9CBC55004E0894 /* ExampleViewController.swift in Sources */,
+				D5A10BD41FDD5FB0005B7474 /* URL+Random.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,8 +9,8 @@
 import Foundation
 
 extension Int {
-    static var random10: Int {
-        let randomNumber: UInt32 = arc4random_uniform(10)
+    static func random(upper: Int = 10) -> Int {
+        let randomNumber: UInt32 = arc4random_uniform(UInt32(upper))
         return Int(randomNumber)
     }
 }

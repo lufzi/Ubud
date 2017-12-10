@@ -23,17 +23,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </imageView>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="l1e-al-P0N">
+                        <rect key="frame" x="77" y="77" width="20" height="20"/>
+                        <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </activityIndicatorView>
                 </subviews>
             </view>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="l1e-al-P0N" firstAttribute="centerX" secondItem="L3K-rV-D5V" secondAttribute="centerX" id="AF7-4J-y3D"/>
                 <constraint firstItem="L3K-rV-D5V" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="QEY-Yg-a7k"/>
+                <constraint firstItem="l1e-al-P0N" firstAttribute="centerY" secondItem="L3K-rV-D5V" secondAttribute="centerY" id="ocP-NX-ulf"/>
                 <constraint firstItem="L3K-rV-D5V" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ozh-Ba-m98"/>
                 <constraint firstAttribute="trailing" secondItem="L3K-rV-D5V" secondAttribute="trailing" id="r8e-0q-bIp"/>
                 <constraint firstAttribute="bottom" secondItem="L3K-rV-D5V" secondAttribute="bottom" id="tgJ-M8-gjn"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
+                <outlet property="activityIndicator" destination="l1e-al-P0N" id="Qoa-Zb-obH"/>
                 <outlet property="imageView" destination="L3K-rV-D5V" id="C97-tH-Xd5"/>
             </connections>
         </collectionViewCell>
