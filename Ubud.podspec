@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Ubud'
-  s.version = '0.1.4'
+  s.version = '0.1.5'
   s.license = { :type => "MIT", :file => "LICENSE.md" }
 
   s.summary = 'Carousel photo browser library for iOS.'
