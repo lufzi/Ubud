@@ -1,11 +1,38 @@
 language: swift
-osx_image: xcode9.1
+osx_image: xcode9.2
 
 env:
    global:
    - LANG=en_US.UTF-8
 
    - PROJECT="Ubud.xcodeproj"
+   - WORKSPACE="Ubux.xcworkspace"
    - IOS_SCHEME="Ubud"
-   - IOS_SDK=iphonesimulator10
+   - IOS_SDK=iphonesimulator11.2
+
+   matrix:
+   - DESTINATION="OS=9.0,name=iPhone 5s"        SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" BUILD_EXAMPLE="YES" RUN_UI_TESTS="YES" POD_LINT="NO"
+   - DESTINATION="OS=10.0,name=iPhone 6"        SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" BUILD_EXAMPLE="YES" RUN_UI_TESTS="YES" POD_LINT="NO"
+   - DESTINATION="OS=10.1,name=iPhone 6s Plus"  SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" BUILD_EXAMPLE="YES" RUN_UI_TESTS="YES" POD_LINT="NO"
+   - DESTINATION="OS=10.2,name=iPhone 7 Plus"   SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" BUILD_EXAMPLE="YES" RUN_UI_TESTS="YES" POD_LINT="NO"
+   - DESTINATION="OS=10.3,name=iPhone 8 Plus"   SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" BUILD_EXAMPLE="YES" RUN_UI_TESTS="YES" POD_LINT="NO"
+   - DESTINATION="OS=11.0,name=iPhone SE"       SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" BUILD_EXAMPLE="YES" RUN_UI_TESTS="YES" POD_LINT="NO"
+   - DESTINATION="OS=11.2,name=iPhone X"        SDK="$IOS_SDK" SCHEME="$IOS_SCHEME" RUN_TESTS="YES" BUILD_EXAMPLE="YES" RUN_UI_TESTS="YES" POD_LINT="NO"
    
+script:
+
+- if [$POD_LINT == "YES"]; then
+    pod lib lint;
+  fi
+
+- if [$RUN_TESTS == "YES"]; then
+    xcodebuild analyze test -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c;
+  fi
+
+- if [$RUN_UI_TESTS == "YES"]; then
+    xcodebuild test -workspace "$WORKSPACE" -scheme Ubud-Example -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO | xcpretty -c;
+  fi
+
+- if [$BUILD_EXAMPLE == "YES"]; then
+    xcodebuild build analyze -workspace "$WORKSPACE" -scheme Ubud-Example -sdk "$SDK" -destination "$DESTINATION" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c;
+  fi
