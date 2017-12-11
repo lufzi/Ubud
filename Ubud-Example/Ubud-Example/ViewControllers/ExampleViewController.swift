@@ -8,6 +8,11 @@
 
 import UIKit
 
+public enum Example: String {
+    case paginationTextExample = "Text Indicator Page"
+    case paginationDotExample = "Dot Indicator Page"
+}
+
 private let reuseIdentifier = "ExampleCell"
 
 final class ExampleViewController: UITableViewController {
@@ -34,24 +39,42 @@ final class ExampleViewController: UITableViewController {
         tableView.rowHeight = 50.0
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 2
+        } else {
+            return 0
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        cell.textLabel?.text = indexPath.row == 0 ? "Local Resource Sample" : "Remote Resource Sample"
+        if indexPath.section == 0 {
+            cell.textLabel?.text = indexPath.row == 0 ? "Text Indicator Page" : "Dot Indicator Page"
+        }
         cell.accessoryType = .disclosureIndicator
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            let localResourceViewController = LocalResourceViewController()
-            navigationController?.pushViewController(localResourceViewController, animated: true)
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Pagination Indicator Example"
         } else {
-            let remoteResourceViewController = RemoteResourceViewController()
-            navigationController?.pushViewController(remoteResourceViewController, animated: true)
+            return nil
         }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let exampleGalleryViewController: ExampleGalleryViewController
+        if indexPath.row == 0 {
+            exampleGalleryViewController = ExampleGalleryViewController(example: .paginationTextExample)
+        } else {
+            exampleGalleryViewController = ExampleGalleryViewController(example: .paginationDotExample)
+        }
+        navigationController?.pushViewController(exampleGalleryViewController, animated: true)
     }
 }

@@ -38,6 +38,11 @@ open class UbudController: UIViewController {
         return view
     }()
 
+    private lazy var bottomContainerView: UbudPaginationIndicatorView = { [unowned self] in
+        let view = UbudPaginationIndicatorView()
+        return view
+    }()
+
     private lazy var tapGesture: UITapGestureRecognizer = { [unowned self] in
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapContent))
         return gesture
@@ -48,6 +53,7 @@ open class UbudController: UIViewController {
     }()
 
     private weak var delegate: UbudControllerDelegate?
+    private weak var paginationDelegate: UbudControllerPaginationDelegate?
     private weak var dataSource: UbudControllerDataSource!
     private var presenting: UIViewController!
     private var currentIndex: Int = 0
@@ -55,10 +61,11 @@ open class UbudController: UIViewController {
     private var selectedImage: UIImageView?
     private var focusState: FocusState = .inactive
 
-    private init(presentedBy presenting: UIViewController, dataSource: UbudControllerDataSource, delegate: UbudControllerDelegate?) {
+    private init(presentedBy presenting: UIViewController, dataSource: UbudControllerDataSource, delegate: UbudControllerDelegate?, paginationDelegate: UbudControllerPaginationDelegate?) {
         self.presenting = presenting
         self.dataSource = dataSource
         self.delegate = delegate
+        self.paginationDelegate = paginationDelegate
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -68,11 +75,13 @@ open class UbudController: UIViewController {
 
     // MARK: - Public Methods
 
-    open class func show(presentedBy presenting: UIViewController, dataSource: UbudControllerDataSource, delegate: UbudControllerDelegate? = nil, atIndex index: Int) {
+    open class func show(presentedBy presenting: UIViewController, dataSource: UbudControllerDataSource, delegate: UbudControllerDelegate? = nil, paginationDelegate: UbudControllerPaginationDelegate? = nil, atIndex index: Int) {
+
         let controller = UbudController(
             presentedBy: presenting,
             dataSource: dataSource,
-            delegate: delegate
+            delegate: delegate,
+            paginationDelegate: paginationDelegate
         )
         controller.present(selectedIndex: index)
     }
@@ -105,6 +114,7 @@ open class UbudController: UIViewController {
         collectionView.setCollectionViewLayout(layout, animated: false)
         /// Update current content to a content of selected index.
         updateContentCellAtSelectedIndex()
+        configurePaginationIndicator(isInitialLoad: true, index: currentIndex)
     }
 
     open override func viewDidLayoutSubviews() {
@@ -149,6 +159,16 @@ open class UbudController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: collectionViewBottomAnchor)
         ])
 
+        if paginationDelegate != nil {
+            view.addSubview(bottomContainerView)
+            NSLayoutConstraint.activate([
+                bottomContainerView.heightAnchor.constraint(equalToConstant: 50.0),
+                bottomContainerView.leadingAnchor.constraint(equalTo: topContainerViewLeadingAnchor),
+                bottomContainerView.trailingAnchor.constraint(equalTo: topContainerViewTrailingAnchor),
+                bottomContainerView.bottomAnchor.constraint(equalTo: collectionViewBottomAnchor)
+            ])
+        }
+
         /// Check if delegate provide custom dismiss button content
         if let dismissContent = delegate?.dismissButtonContent(in: self) {
             topContainerView.configureDismissButton(content: dismissContent)
@@ -178,6 +198,20 @@ open class UbudController: UIViewController {
                 let indexPath = IndexPath(item: selectedIndex, section: 0)
                 collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
             }, completion: nil)
+        }
+    }
+
+    private func configurePaginationIndicator(isInitialLoad: Bool = false, index: Int) {
+        guard paginationDelegate != nil else { return }
+        let totalPages = dataSource.numberOfOPhotos(in: self)
+        /// Call pagination delegate and setup the pagination style
+        if let paginationStyle = paginationDelegate?.imagesPaginationStyle(in: self) {
+            bottomContainerView.configure(
+                isInitialLoad: isInitialLoad,
+                currentIndex: index,
+                totalPages: totalPages,
+                style: paginationStyle
+            )
         }
     }
 
@@ -214,6 +248,23 @@ extension UbudController: UICollectionViewDataSource, UICollectionViewDelegate {
             cell.configureImage(url)
         }
         return cell
+    }
+
+    // MARK: - UIScrollViewDelegate
+
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let x = scrollView.contentOffset.x
+        let width = scrollView.bounds.size.width
+
+        /// Set current index
+        let targetIndex = Int(ceil(x/width))
+        let isPageChanging = (currentIndex != targetIndex)
+        guard isPageChanging else { return }
+        currentIndex = targetIndex
+
+        /// Call pagination delegate upon page did change
+        paginationDelegate?.imagesPaginationDidChange(in: self, atIndex: currentIndex)
+        configurePaginationIndicator(index: currentIndex)
     }
 }
 

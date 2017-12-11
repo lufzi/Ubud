@@ -25,10 +25,10 @@ final class ImageCell: UICollectionViewCell {
     func configure(url: URL, indexPath: IndexPath) {
         activityIndicator.startAnimating()
         imageView.image = nil
-        imageView.download(url: url, completion: { [unowned self] image in
+        imageView.download(url: url, completion: { [weak self] image in
             DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                self.imageView.image = image
+                self?.activityIndicator.stopAnimating()
+                self?.imageView.image = image
             }
         })
     }

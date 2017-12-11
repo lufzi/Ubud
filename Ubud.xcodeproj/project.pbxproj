@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D51B74B11F9CA9FB00223477 /* Ubud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D51B74A71F9CA9FB00223477 /* Ubud.framework */; };
 		D51B74B61F9CA9FB00223477 /* UbudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B74B51F9CA9FB00223477 /* UbudTests.swift */; };
+		D57A99BE1FDE34B200C7BBCB /* UbudPaginationIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57A99BD1FDE34B200C7BBCB /* UbudPaginationIndicatorView.swift */; };
+		D57A99C01FDE3DDD00C7BBCB /* UbudControllerPaginationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57A99BF1FDE3DDD00C7BBCB /* UbudControllerPaginationDelegate.swift */; };
 		D59C660D1F9CCBC600C37F51 /* UbudController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C660C1F9CCBC600C37F51 /* UbudController.swift */; };
 		D59C66151F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C66141F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift */; };
 		D59C66171F9CF90400C37F51 /* UbudCollectionPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C66161F9CF90400C37F51 /* UbudCollectionPhotoCell.swift */; };
@@ -37,6 +39,8 @@
 		D51B74B01F9CA9FB00223477 /* UbudTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UbudTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51B74B51F9CA9FB00223477 /* UbudTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudTests.swift; sourceTree = "<group>"; };
 		D51B74B71F9CA9FB00223477 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D57A99BD1FDE34B200C7BBCB /* UbudPaginationIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudPaginationIndicatorView.swift; sourceTree = "<group>"; };
+		D57A99BF1FDE3DDD00C7BBCB /* UbudControllerPaginationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudControllerPaginationDelegate.swift; sourceTree = "<group>"; };
 		D59C660C1F9CCBC600C37F51 /* UbudController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudController.swift; sourceTree = "<group>"; };
 		D59C66141F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudCollectionFlowLayout.swift; sourceTree = "<group>"; };
 		D59C66161F9CF90400C37F51 /* UbudCollectionPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudCollectionPhotoCell.swift; sourceTree = "<group>"; };
@@ -137,8 +141,9 @@
 		D5B9D2061FD3F0A90061675A /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				D5B9D2091FD3F0DA0061675A /* UbudControllerDelegate.swift */,
 				D5B9D20B1FD3F0E60061675A /* UbudControllerDataSource.swift */,
+				D5B9D2091FD3F0DA0061675A /* UbudControllerDelegate.swift */,
+				D57A99BF1FDE3DDD00C7BBCB /* UbudControllerPaginationDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				D5B9D20E1FD418060061675A /* UbudTopContainerView.swift */,
+				D57A99BD1FDE34B200C7BBCB /* UbudPaginationIndicatorView.swift */,
 				D59C66161F9CF90400C37F51 /* UbudCollectionPhotoCell.swift */,
 				D59C66141F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift */,
 			);
@@ -296,8 +302,10 @@
 				D5A10BDC1FDD7BDE005B7474 /* UIImageView+Downloader.swift in Sources */,
 				D5B9D20F1FD418060061675A /* UbudTopContainerView.swift in Sources */,
 				D5DC08431F9ECBDE00E2C6AD /* UbudTransitionAnimator.swift in Sources */,
+				D57A99BE1FDE34B200C7BBCB /* UbudPaginationIndicatorView.swift in Sources */,
 				D5B9D20C1FD3F0E60061675A /* UbudControllerDataSource.swift in Sources */,
 				D5B9D20A1FD3F0DA0061675A /* UbudControllerDelegate.swift in Sources */,
+				D57A99C01FDE3DDD00C7BBCB /* UbudControllerPaginationDelegate.swift in Sources */,
 				D59C66151F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
