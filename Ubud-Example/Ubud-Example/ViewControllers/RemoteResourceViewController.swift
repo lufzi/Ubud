@@ -52,7 +52,12 @@ extension RemoteResourceViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        UbudController.show(presentedBy: self, dataSource: self, delegate: self, atIndex: indexPath.item)
+        UbudController.show(
+            presentedBy: self,
+            dataSource: self,
+            paginationDelegate: self,
+            atIndex: indexPath.item
+        )
     }
 }
 
@@ -70,7 +75,15 @@ extension RemoteResourceViewController: UbudControllerDataSource {
     }
 }
 
-extension RemoteResourceViewController: UbudControllerDelegate {
+extension RemoteResourceViewController: UbudControllerPaginationDelegate {
 
-    // MARK: - UbudControllerDelegate
+    // MARK: - UbudControllerPaginationDelegate
+
+    func imagesPaginationStyle(in controller: UbudController) -> ImagesPaginationStyle? {
+        return .textIndicator
+    }
+
+    func imagesPaginationDidChange(in controller: UbudController, atIndex index: Int) {
+        print("Did change at: \(index)")
+    }
 }
