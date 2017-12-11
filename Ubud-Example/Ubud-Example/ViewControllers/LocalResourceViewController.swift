@@ -17,10 +17,12 @@ final class LocalResourceViewController: UICollectionViewController {
         return UIImage.generateRandomImages(count: 15)
     }()
 
-    init() {
-        let layout = ImagesFlowLayout()
-        super.init(collectionViewLayout: layout)
-        self.title = "Local Images"
+    private var example: Example!
+
+    public init(example: Example) {
+        super.init(collectionViewLayout: ImagesFlowLayout())
+        self.example = example
+        self.view.translatesAutoresizingMaskIntoConstraints = false
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -52,7 +54,12 @@ extension LocalResourceViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        UbudController.show(presentedBy: self, dataSource: self, delegate: self, atIndex: indexPath.item)
+        UbudController.show(
+            presentedBy: self,
+            dataSource: self,
+            paginationDelegate: self,
+            atIndex: indexPath.item
+        )
     }
 }
 
@@ -70,7 +77,19 @@ extension LocalResourceViewController: UbudControllerDataSource {
     }
 }
 
-extension LocalResourceViewController: UbudControllerDelegate {
+extension LocalResourceViewController: UbudControllerPaginationDelegate {
 
-    // MARK: - UbudControllerDelegate
+    // MARK: - UbudControllerPaginationDelegate
+
+    func imagesPaginationStyle(in controller: UbudController) -> ImagesPaginationStyle? {
+        if example == .paginationTextExample {
+            return .textIndicator
+        } else {
+            return .dotIndicator
+        }
+    }
+
+    func imagesPaginationDidChange(in controller: UbudController, atIndex index: Int) {
+        print("Did change at: \(index)")
+    }
 }

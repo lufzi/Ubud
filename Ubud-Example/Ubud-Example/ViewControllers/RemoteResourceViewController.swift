@@ -14,13 +14,15 @@ private let reuseIdentifier = "ImageCell"
 final class RemoteResourceViewController: UICollectionViewController {
 
     private lazy var urls: [ImageURL] = {
-        return URL.generateRandomImageURLs(count: 20)
+        return URL.generateRandomImageURLs(count: 15)
     }()
 
-    init() {
-        let layout = ImagesFlowLayout()
-        super.init(collectionViewLayout: layout)
-        self.title = "Image URLs"
+    private var example: Example!
+
+    public init(example: Example) {
+        super.init(collectionViewLayout: ImagesFlowLayout())
+        self.example = example
+        self.view.translatesAutoresizingMaskIntoConstraints = false
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -52,7 +54,12 @@ extension RemoteResourceViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        UbudController.show(presentedBy: self, dataSource: self, delegate: self, atIndex: indexPath.item)
+        UbudController.show(
+            presentedBy: self,
+            dataSource: self,
+            paginationDelegate: self,
+            atIndex: indexPath.item
+        )
     }
 }
 
@@ -70,7 +77,19 @@ extension RemoteResourceViewController: UbudControllerDataSource {
     }
 }
 
-extension RemoteResourceViewController: UbudControllerDelegate {
+extension RemoteResourceViewController: UbudControllerPaginationDelegate {
 
-    // MARK: - UbudControllerDelegate
+    // MARK: - UbudControllerPaginationDelegate
+
+    func imagesPaginationStyle(in controller: UbudController) -> ImagesPaginationStyle? {
+        if example == .paginationTextExample {
+            return .textIndicator
+        } else {
+            return .dotIndicator
+        }
+    }
+
+    func imagesPaginationDidChange(in controller: UbudController, atIndex index: Int) {
+        print("Did change at: \(index)")
+    }
 }
