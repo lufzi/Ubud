@@ -14,13 +14,15 @@ private let reuseIdentifier = "ImageCell"
 final class RemoteResourceViewController: UICollectionViewController {
 
     private lazy var urls: [ImageURL] = {
-        return URL.generateRandomImageURLs(count: 20)
+        return URL.generateRandomImageURLs(count: 15)
     }()
 
-    init() {
-        let layout = ImagesFlowLayout()
-        super.init(collectionViewLayout: layout)
-        self.title = "Image URLs"
+    private var example: Example!
+
+    public init(example: Example) {
+        super.init(collectionViewLayout: ImagesFlowLayout())
+        self.example = example
+        self.view.translatesAutoresizingMaskIntoConstraints = false
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -80,7 +82,11 @@ extension RemoteResourceViewController: UbudControllerPaginationDelegate {
     // MARK: - UbudControllerPaginationDelegate
 
     func imagesPaginationStyle(in controller: UbudController) -> ImagesPaginationStyle? {
-        return .dotIndicator
+        if example == .paginationTextExample {
+            return .textIndicator
+        } else {
+            return .dotIndicator
+        }
     }
 
     func imagesPaginationDidChange(in controller: UbudController, atIndex index: Int) {

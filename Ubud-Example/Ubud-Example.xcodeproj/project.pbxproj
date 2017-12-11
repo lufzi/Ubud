@@ -17,6 +17,7 @@
 		D575D4FA1F9CB949004E0894 /* Ubud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D575D4F91F9CB949004E0894 /* Ubud.framework */; };
 		D575D4FB1F9CB949004E0894 /* Ubud.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D575D4F91F9CB949004E0894 /* Ubud.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D575D5041F9CBC55004E0894 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D575D5031F9CBC54004E0894 /* ExampleViewController.swift */; };
+		D57A99C21FDE67DF00C7BBCB /* ExampleGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57A99C11FDE67DF00C7BBCB /* ExampleGalleryViewController.swift */; };
 		D5A10BC91FDD5104005B7474 /* ImagesFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A10BC81FDD5104005B7474 /* ImagesFlowLayout.swift */; };
 		D5A10BCC1FDD5BB7005B7474 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A10BCB1FDD5BB7005B7474 /* Int+Random.swift */; };
 		D5A10BCE1FDD5BCB005B7474 /* UIImage+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A10BCD1FDD5BCB005B7474 /* UIImage+Random.swift */; };
@@ -63,6 +64,7 @@
 		D557BADA1F9D7A7C0006E5F9 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		D575D4F91F9CB949004E0894 /* Ubud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Ubud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D575D5031F9CBC54004E0894 /* ExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExampleViewController.swift; path = "Ubud-Example/ViewControllers/ExampleViewController.swift"; sourceTree = SOURCE_ROOT; };
+		D57A99C11FDE67DF00C7BBCB /* ExampleGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleGalleryViewController.swift; sourceTree = "<group>"; };
 		D5A10BC81FDD5104005B7474 /* ImagesFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesFlowLayout.swift; sourceTree = "<group>"; };
 		D5A10BCB1FDD5BB7005B7474 /* Int+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Random.swift"; sourceTree = "<group>"; };
 		D5A10BCD1FDD5BCB005B7474 /* UIImage+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Random.swift"; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				D575D5031F9CBC54004E0894 /* ExampleViewController.swift */,
+				D57A99C11FDE67DF00C7BBCB /* ExampleGalleryViewController.swift */,
 				D557BAD61F9D7A120006E5F9 /* LocalResourceViewController.swift */,
 				D5A10BD11FDD5D28005B7474 /* RemoteResourceViewController.swift */,
 			);
@@ -276,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5A10BD21FDD5D28005B7474 /* RemoteResourceViewController.swift in Sources */,
+				D57A99C21FDE67DF00C7BBCB /* ExampleGalleryViewController.swift in Sources */,
 				D557BADB1F9D7A7C0006E5F9 /* ImageCell.swift in Sources */,
 				D5A10BC91FDD5104005B7474 /* ImagesFlowLayout.swift in Sources */,
 				D557BAD71F9D7A120006E5F9 /* LocalResourceViewController.swift in Sources */,
