@@ -64,8 +64,8 @@ internal final class UbudPaginationIndicatorView: UIView {
             textLabel.text = "\(currentIndex + 1)/\(totalPages)"
         case .dotIndicator:
             textLabel.isHidden = true
-            pageControl.currentPage = currentIndex
             pageControl.numberOfPages = totalPages
+            pageControl.currentPage = currentIndex
             if isInitialLoad {
                 switch totalPages {
                 case 0...22:

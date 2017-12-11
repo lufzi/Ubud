@@ -114,6 +114,7 @@ open class UbudController: UIViewController {
         collectionView.setCollectionViewLayout(layout, animated: false)
         /// Update current content to a content of selected index.
         updateContentCellAtSelectedIndex()
+        configurePaginationIndicator(isInitialLoad: true, index: currentIndex)
     }
 
     open override func viewDidLayoutSubviews() {
@@ -166,7 +167,6 @@ open class UbudController: UIViewController {
                 bottomContainerView.trailingAnchor.constraint(equalTo: topContainerViewTrailingAnchor),
                 bottomContainerView.bottomAnchor.constraint(equalTo: collectionViewBottomAnchor)
             ])
-            configurePaginationIndicator(isInitialLoad: true, index: selectedIndex)
         }
 
         /// Check if delegate provide custom dismiss button content
