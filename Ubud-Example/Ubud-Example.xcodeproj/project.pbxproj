@@ -24,10 +24,18 @@
 		D5A10BD21FDD5D28005B7474 /* RemoteResourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A10BD11FDD5D28005B7474 /* RemoteResourceViewController.swift */; };
 		D5A10BD41FDD5FB0005B7474 /* URL+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A10BD31FDD5FB0005B7474 /* URL+Random.swift */; };
 		D5A10BD81FDD677E005B7474 /* UIImageView+Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A10BD71FDD677E005B7474 /* UIImageView+Downloader.swift */; };
+		D5D3BF6A1FDE979A00C70477 /* UbudExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D3BF691FDE979A00C70477 /* UbudExampleUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		D51B751D1F9CB6DA00223477 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D51B75001F9CB6D900223477 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D51B75071F9CB6D900223477;
+			remoteInfo = "Ubud-Example";
+		};
+		D5D3BF6C1FDE979A00C70477 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D51B75001F9CB6D900223477 /* Project object */;
 			proxyType = 1;
@@ -71,6 +79,9 @@
 		D5A10BD11FDD5D28005B7474 /* RemoteResourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteResourceViewController.swift; sourceTree = "<group>"; };
 		D5A10BD31FDD5FB0005B7474 /* URL+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Random.swift"; sourceTree = "<group>"; };
 		D5A10BD71FDD677E005B7474 /* UIImageView+Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Downloader.swift"; sourceTree = "<group>"; };
+		D5D3BF671FDE979A00C70477 /* Ubud-ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ubud-ExampleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5D3BF691FDE979A00C70477 /* UbudExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudExampleUITests.swift; sourceTree = "<group>"; };
+		D5D3BF6B1FDE979A00C70477 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +100,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D5D3BF641FDE979A00C70477 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -97,6 +115,7 @@
 			children = (
 				D51B750A1F9CB6D900223477 /* Ubud-Example */,
 				D51B751F1F9CB6DA00223477 /* Ubud-ExampleTests */,
+				D5D3BF681FDE979A00C70477 /* Ubud-ExampleUITests */,
 				D51B75091F9CB6D900223477 /* Products */,
 				D575D4F91F9CB949004E0894 /* Ubud.framework */,
 			);
@@ -107,6 +126,7 @@
 			children = (
 				D51B75081F9CB6D900223477 /* Ubud-Example.app */,
 				D51B751C1F9CB6DA00223477 /* UbudExample.xctest */,
+				D5D3BF671FDE979A00C70477 /* Ubud-ExampleUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -174,6 +194,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		D5D3BF681FDE979A00C70477 /* Ubud-ExampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D5D3BF691FDE979A00C70477 /* UbudExampleUITests.swift */,
+				D5D3BF6B1FDE979A00C70477 /* Info.plist */,
+			);
+			path = "Ubud-ExampleUITests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -213,13 +242,31 @@
 			productReference = D51B751C1F9CB6DA00223477 /* UbudExample.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D5D3BF661FDE979A00C70477 /* Ubud-ExampleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5D3BF6E1FDE979A00C70477 /* Build configuration list for PBXNativeTarget "Ubud-ExampleUITests" */;
+			buildPhases = (
+				D5D3BF631FDE979A00C70477 /* Sources */,
+				D5D3BF641FDE979A00C70477 /* Frameworks */,
+				D5D3BF651FDE979A00C70477 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5D3BF6D1FDE979A00C70477 /* PBXTargetDependency */,
+			);
+			name = "Ubud-ExampleUITests";
+			productName = "Ubud-ExampleUITests";
+			productReference = D5D3BF671FDE979A00C70477 /* Ubud-ExampleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		D51B75001F9CB6D900223477 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0900;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Luqman Fauzi";
 				TargetAttributes = {
@@ -229,7 +276,12 @@
 					};
 					D51B751B1F9CB6DA00223477 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						TestTargetID = D51B75071F9CB6D900223477;
+					};
+					D5D3BF661FDE979A00C70477 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Manual;
 						TestTargetID = D51B75071F9CB6D900223477;
 					};
 				};
@@ -249,6 +301,7 @@
 			targets = (
 				D51B75071F9CB6D900223477 /* Ubud-Example */,
 				D51B751B1F9CB6DA00223477 /* Ubud-ExampleTests */,
+				D5D3BF661FDE979A00C70477 /* Ubud-ExampleUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -265,6 +318,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D51B751A1F9CB6DA00223477 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5D3BF651FDE979A00C70477 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -300,6 +360,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D5D3BF631FDE979A00C70477 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5D3BF6A1FDE979A00C70477 /* UbudExampleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -307,6 +375,11 @@
 			isa = PBXTargetDependency;
 			target = D51B75071F9CB6D900223477 /* Ubud-Example */;
 			targetProxy = D51B751D1F9CB6DA00223477 /* PBXContainerItemProxy */;
+		};
+		D5D3BF6D1FDE979A00C70477 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D51B75071F9CB6D900223477 /* Ubud-Example */;
+			targetProxy = D5D3BF6C1FDE979A00C70477 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -470,12 +543,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R2XF3NYPAG;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Ubud-ExampleTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.luqmanfauzi.Ubud-ExampleTests";
 				PRODUCT_NAME = UbudExample;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ubud-Example.app/Ubud-Example";
@@ -487,15 +561,50 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R2XF3NYPAG;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Ubud-ExampleTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.luqmanfauzi.Ubud-ExampleTests";
 				PRODUCT_NAME = UbudExample;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ubud-Example.app/Ubud-Example";
+			};
+			name = Release;
+		};
+		D5D3BF6F1FDE979A00C70477 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Ubud-ExampleUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.luqmanfauzi.Ubud-ExampleUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Ubud-Example";
+			};
+			name = Debug;
+		};
+		D5D3BF701FDE979A00C70477 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Ubud-ExampleUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.luqmanfauzi.Ubud-ExampleUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Ubud-Example";
 			};
 			name = Release;
 		};
@@ -525,6 +634,15 @@
 			buildConfigurations = (
 				D51B75291F9CB6DA00223477 /* Debug */,
 				D51B752A1F9CB6DA00223477 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D5D3BF6E1FDE979A00C70477 /* Build configuration list for PBXNativeTarget "Ubud-ExampleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5D3BF6F1FDE979A00C70477 /* Debug */,
+				D5D3BF701FDE979A00C70477 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
