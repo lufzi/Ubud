@@ -158,13 +158,7 @@ open class UbudController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: collectionViewBottomAnchor)
         ])
 
-        if let paginationStyle = paginationDelegate?.imagesPaginationStyle(in: self) {
-            let totalPages = dataSource.numberOfOPhotos(in: self)
-            bottomContainerView.configure(
-                currentIndex: currentIndex,
-                totalPages: totalPages,
-                style: paginationStyle
-            )
+        if paginationDelegate != nil {
             view.addSubview(bottomContainerView)
             NSLayoutConstraint.activate([
                 bottomContainerView.heightAnchor.constraint(equalToConstant: 50.0),
@@ -172,6 +166,7 @@ open class UbudController: UIViewController {
                 bottomContainerView.trailingAnchor.constraint(equalTo: topContainerViewTrailingAnchor),
                 bottomContainerView.bottomAnchor.constraint(equalTo: collectionViewBottomAnchor)
             ])
+            configurePaginationIndicator(isInitialLoad: true, index: selectedIndex)
         }
 
         /// Check if delegate provide custom dismiss button content
@@ -203,6 +198,20 @@ open class UbudController: UIViewController {
                 let indexPath = IndexPath(item: selectedIndex, section: 0)
                 collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
             }, completion: nil)
+        }
+    }
+
+    private func configurePaginationIndicator(isInitialLoad: Bool = false, index: Int) {
+        guard paginationDelegate != nil else { return }
+        let totalPages = dataSource.numberOfOPhotos(in: self)
+        /// Call pagination delegate and setup the pagination style
+        if let paginationStyle = paginationDelegate?.imagesPaginationStyle(in: self) {
+            bottomContainerView.configure(
+                isInitialLoad: isInitialLoad,
+                currentIndex: index,
+                totalPages: totalPages,
+                style: paginationStyle
+            )
         }
     }
 
@@ -253,17 +262,9 @@ extension UbudController: UICollectionViewDataSource, UICollectionViewDelegate {
         guard isPageChanging else { return }
         currentIndex = targetIndex
 
-        let totalPages = dataSource.numberOfOPhotos(in: self)
         /// Call pagination delegate upon page did change
         paginationDelegate?.imagesPaginationDidChange(in: self, atIndex: currentIndex)
-        /// Call pagination delegate and setup the pagination style
-        if let paginationStyle = paginationDelegate?.imagesPaginationStyle(in: self) {
-            bottomContainerView.configure(
-                currentIndex: currentIndex,
-                totalPages: totalPages,
-                style: paginationStyle
-            )
-        }
+        configurePaginationIndicator(index: currentIndex)
     }
 }
 

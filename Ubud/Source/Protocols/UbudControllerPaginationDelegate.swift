@@ -9,7 +9,8 @@
 import Foundation
 
 public enum ImagesPaginationStyle {
-    case textIndicator, dotIndicator
+    case textIndicator
+    case dotIndicator
 }
 
 public protocol UbudControllerPaginationDelegate: class {

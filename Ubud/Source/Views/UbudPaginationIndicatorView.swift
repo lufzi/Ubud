@@ -19,6 +19,13 @@ internal final class UbudPaginationIndicatorView: UIView {
         return label
     }()
 
+    private lazy var pageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.hidesForSinglePage = true
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        return pageControl
+    }()
+
     public init() {
         super.init(frame: .zero)
         backgroundColor = .clear
@@ -40,14 +47,37 @@ internal final class UbudPaginationIndicatorView: UIView {
             textLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             textLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
+
+        addSubview(pageControl)
+        NSLayoutConstraint.activate([
+            pageControl.topAnchor.constraint(equalTo: topAnchor),
+            pageControl.bottomAnchor.constraint(equalTo: bottomAnchor),
+            pageControl.leadingAnchor.constraint(equalTo: leadingAnchor),
+            pageControl.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
     }
 
-    func configure(currentIndex: Int, totalPages: Int, style: ImagesPaginationStyle) {
+    func configure(isInitialLoad: Bool = false, currentIndex: Int, totalPages: Int, style: ImagesPaginationStyle) {
         switch style {
         case .textIndicator:
+            pageControl.isHidden = true
             textLabel.text = "\(currentIndex + 1)/\(totalPages)"
         case .dotIndicator:
-            return
+            textLabel.isHidden = true
+            pageControl.currentPage = currentIndex
+            pageControl.numberOfPages = totalPages
+            if isInitialLoad {
+                switch totalPages {
+                case 0...22:
+                    return
+                case 22...25:
+                    pageControl.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                case 26...30:
+                    pageControl.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+                default:
+                    pageControl.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+                }
+            }
         }
     }
 }

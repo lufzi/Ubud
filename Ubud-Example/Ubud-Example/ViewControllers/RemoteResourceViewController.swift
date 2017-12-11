@@ -80,7 +80,7 @@ extension RemoteResourceViewController: UbudControllerPaginationDelegate {
     // MARK: - UbudControllerPaginationDelegate
 
     func imagesPaginationStyle(in controller: UbudController) -> ImagesPaginationStyle? {
-        return .textIndicator
+        return .dotIndicator
     }
 
     func imagesPaginationDidChange(in controller: UbudController, atIndex index: Int) {
