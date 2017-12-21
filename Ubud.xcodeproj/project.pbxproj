@@ -11,10 +11,10 @@
 		D51B74B61F9CA9FB00223477 /* UbudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51B74B51F9CA9FB00223477 /* UbudTests.swift */; };
 		D57A99BE1FDE34B200C7BBCB /* UbudPaginationIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57A99BD1FDE34B200C7BBCB /* UbudPaginationIndicatorView.swift */; };
 		D57A99C01FDE3DDD00C7BBCB /* UbudControllerPaginationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57A99BF1FDE3DDD00C7BBCB /* UbudControllerPaginationDelegate.swift */; };
+		D588F2BB1FEC035700AEE201 /* UIImageView+Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D588F2BA1FEC035700AEE201 /* UIImageView+Downloader.swift */; };
 		D59C660D1F9CCBC600C37F51 /* UbudController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C660C1F9CCBC600C37F51 /* UbudController.swift */; };
 		D59C66151F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C66141F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift */; };
 		D59C66171F9CF90400C37F51 /* UbudCollectionPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59C66161F9CF90400C37F51 /* UbudCollectionPhotoCell.swift */; };
-		D5A10BDC1FDD7BDE005B7474 /* UIImageView+Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A10BDB1FDD7BDE005B7474 /* UIImageView+Downloader.swift */; };
 		D5A10BDE1FDD7BED005B7474 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A10BDD1FDD7BED005B7474 /* ImageCache.swift */; };
 		D5B9D20A1FD3F0DA0061675A /* UbudControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B9D2091FD3F0DA0061675A /* UbudControllerDelegate.swift */; };
 		D5B9D20C1FD3F0E60061675A /* UbudControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B9D20B1FD3F0E60061675A /* UbudControllerDataSource.swift */; };
@@ -41,10 +41,10 @@
 		D51B74B71F9CA9FB00223477 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D57A99BD1FDE34B200C7BBCB /* UbudPaginationIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudPaginationIndicatorView.swift; sourceTree = "<group>"; };
 		D57A99BF1FDE3DDD00C7BBCB /* UbudControllerPaginationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudControllerPaginationDelegate.swift; sourceTree = "<group>"; };
+		D588F2BA1FEC035700AEE201 /* UIImageView+Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+Downloader.swift"; path = "Ubud/Sources/Extensions/UIImageView+Downloader.swift"; sourceTree = SOURCE_ROOT; };
 		D59C660C1F9CCBC600C37F51 /* UbudController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudController.swift; sourceTree = "<group>"; };
 		D59C66141F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudCollectionFlowLayout.swift; sourceTree = "<group>"; };
 		D59C66161F9CF90400C37F51 /* UbudCollectionPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudCollectionPhotoCell.swift; sourceTree = "<group>"; };
-		D5A10BDB1FDD7BDE005B7474 /* UIImageView+Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+Downloader.swift"; path = "Ubud/Source/Extensions/UIImageView+Downloader.swift"; sourceTree = SOURCE_ROOT; };
 		D5A10BDD1FDD7BED005B7474 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		D5B9D2091FD3F0DA0061675A /* UbudControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudControllerDelegate.swift; sourceTree = "<group>"; };
 		D5B9D20B1FD3F0E60061675A /* UbudControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbudControllerDataSource.swift; sourceTree = "<group>"; };
@@ -93,8 +93,8 @@
 		D51B74A91F9CA9FB00223477 /* Ubud */ = {
 			isa = PBXGroup;
 			children = (
-				D59C660B1F9CCBB400C37F51 /* Source */,
-				D51B74AB1F9CA9FB00223477 /* Info.plist */,
+				D59C660B1F9CCBB400C37F51 /* Sources */,
+				D588F2B71FEC02C000AEE201 /* Supporting Files */,
 			);
 			path = Ubud;
 			sourceTree = "<group>";
@@ -108,17 +108,34 @@
 			path = UbudTests;
 			sourceTree = "<group>";
 		};
-		D59C660B1F9CCBB400C37F51 /* Source */ = {
+		D588F2B71FEC02C000AEE201 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D51B74AB1F9CA9FB00223477 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D588F2B91FEC034700AEE201 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D588F2BA1FEC035700AEE201 /* UIImageView+Downloader.swift */,
+			);
+			name = Extensions;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		D59C660B1F9CCBB400C37F51 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				D588F2B91FEC034700AEE201 /* Extensions */,
 				D5A10BD91FDD7B98005B7474 /* Misc */,
-				D5A10BDA1FDD7BC7005B7474 /* Extensions */,
 				D5DC08441F9ECD2000E2C6AD /* Animator */,
 				D5B9D2061FD3F0A90061675A /* Protocols */,
 				D5B9D20D1FD417DB0061675A /* Views */,
 				D59C660C1F9CCBC600C37F51 /* UbudController.swift */,
 			);
-			path = Source;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		D5A10BD91FDD7B98005B7474 /* Misc */ = {
@@ -127,15 +144,6 @@
 				D5A10BDD1FDD7BED005B7474 /* ImageCache.swift */,
 			);
 			path = Misc;
-			sourceTree = "<group>";
-		};
-		D5A10BDA1FDD7BC7005B7474 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				D5A10BDB1FDD7BDE005B7474 /* UIImageView+Downloader.swift */,
-			);
-			name = Extensions;
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		D5B9D2061FD3F0A90061675A /* Protocols */ = {
@@ -235,7 +243,7 @@
 					};
 					D51B74AF1F9CA9FB00223477 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -299,12 +307,12 @@
 				D59C66171F9CF90400C37F51 /* UbudCollectionPhotoCell.swift in Sources */,
 				D5DC08411F9ECA2600E2C6AD /* UbudPresentationController.swift in Sources */,
 				D59C660D1F9CCBC600C37F51 /* UbudController.swift in Sources */,
-				D5A10BDC1FDD7BDE005B7474 /* UIImageView+Downloader.swift in Sources */,
 				D5B9D20F1FD418060061675A /* UbudTopContainerView.swift in Sources */,
 				D5DC08431F9ECBDE00E2C6AD /* UbudTransitionAnimator.swift in Sources */,
 				D57A99BE1FDE34B200C7BBCB /* UbudPaginationIndicatorView.swift in Sources */,
 				D5B9D20C1FD3F0E60061675A /* UbudControllerDataSource.swift in Sources */,
 				D5B9D20A1FD3F0DA0061675A /* UbudControllerDelegate.swift in Sources */,
+				D588F2BB1FEC035700AEE201 /* UIImageView+Downloader.swift in Sources */,
 				D57A99C01FDE3DDD00C7BBCB /* UbudControllerPaginationDelegate.swift in Sources */,
 				D59C66151F9CF7D400C37F51 /* UbudCollectionFlowLayout.swift in Sources */,
 			);
@@ -462,10 +470,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = Ubud/Info.plist;
+				INFOPLIST_FILE = "Ubud/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.luqmanfauzi.Ubud.Ubud;
+				PRODUCT_BUNDLE_IDENTIFIER = me.luqmanfauzi.Ubud;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -489,10 +497,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = Ubud/Info.plist;
+				INFOPLIST_FILE = "Ubud/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.luqmanfauzi.Ubud.Ubud;
+				PRODUCT_BUNDLE_IDENTIFIER = me.luqmanfauzi.Ubud;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -507,12 +515,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R2XF3NYPAG;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = UbudTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.luqmanfauzi.Ubud.UbudTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -522,12 +531,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R2XF3NYPAG;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = UbudTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.luqmanfauzi.Ubud.UbudTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

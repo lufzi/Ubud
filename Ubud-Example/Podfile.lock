@@ -1,0 +1,16 @@
+PODS:
+  - Ubud (0.1.5)
+
+DEPENDENCIES:
+  - Ubud (from `../`)
+
+EXTERNAL SOURCES:
+  Ubud:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Ubud: cab17ec6f64ecf838ee18a126b0ecde693d1f16b
+
+PODFILE CHECKSUM: 4e9e898aa15d5d6cb567296b5ee62f2f0a1a09c5
+
+COCOAPODS: 1.3.1
