@@ -16,14 +16,14 @@
   <img src="https://img.shields.io/badge/License-MIT-red.svg"
       alt="MIT">
 </a>
-<a href="https://github.com/MessageKit/MessageKit/issues">
+<a href="https://github.com/lkmfz/Ubud/issues">
    <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat"
         alt="Contributions Welcome">
 </a>
 
 ## Requirements
 
-- **iOS10** or later
+- **iOS 9** or later
 
 ## Installation
 ### [CocoaPods](https://cocoapods.org/)
@@ -36,7 +36,7 @@ To integrate Ubud using Carthage, add the following to your Cartfile:
 ````ruby
 github 'lkmfz/Ubud'
 ````
-Run carthage update to build the framework and drag the built `Ubud.framework` into your Xcode project.
+Run `carthage update` to build the framework and drag the built `Ubud.framework` into your Xcode project.
 
 ## License
-Ubud is released under the [MIT License](https://github.com/MessageKit/MessageKit/blob/master/LICENSE.md).
+Ubud is released under the [MIT License](https://github.com/lkmfz/Ubud/blob/master/LICENSE.md).

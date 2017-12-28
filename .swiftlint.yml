@@ -35,6 +35,4 @@ identifier_name:
     - x
     - y
     - id
-    - URL
-    - GlobalAPIKey
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle)

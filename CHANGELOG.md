@@ -6,6 +6,9 @@ The changelog for `Ubud`. Also see the [releases](https://github.com/lkmfz/Ubud/
 
 ## Upcoming release
 
+## [Pre-Release 0.1.6](https://github.com/lkmfz/Ubud/releases/tag/0.1.6)
+[0.2 milestone](https://github.com/lkmfz/Ubud/milestone/1)
+
 ## [Pre-Release 0.1.5](https://github.com/lkmfz/Ubud/releases/tag/0.1.5)
 [0.2 milestone](https://github.com/lkmfz/Ubud/milestone/1)
 
