@@ -21,9 +21,13 @@
         alt="Contributions Welcome">
 </a>
 
-## Requirements
+<p>
+  <img src="https://raw.githubusercontent.com/lkmfz/Ubud/master/Resources/screenshot1.png" title="screenshot 1">
+  <img src="https://raw.githubusercontent.com/lkmfz/Ubud/master/Resources/screenshot2.png" title="screenshot 2">
+</p>
 
-- **iOS 9** or later
+## Requirements
+**iOS 9** or later
 
 ## Installation
 ### [CocoaPods](https://cocoapods.org/)
@@ -37,6 +41,91 @@ To integrate Ubud using Carthage, add the following to your Cartfile:
 github 'lkmfz/Ubud'
 ````
 Run `carthage update` to build the framework and drag the built `Ubud.framework` into your Xcode project.
+
+## Usage
+
+To present the `UbudController` view, just put this one line code.
+```swift
+UbudController.show(presentedBy: self, dataSource: self, paginationDelegate: self, atIndex: indexPath.item)
+```
+
+### UbudControllerDataSource
+
+```swift
+enum PhotoDataSource {
+    case image(UIImage)
+    case url(String)
+}
+```
+
+To display images from list of URL`String`
+
+```swift
+// MARK: - UbudControllerDataSource
+
+func numberOfOPhotos(in controller: UbudController) -> Int {
+  return urls.count
+}
+
+func imageSourceForItem(in controller: UbudController, atIndex index: Int) -> PhotoDataSource {
+  let imageURL = urls[index].url.absoluteString
+  return .url(imageURL)
+}
+```
+
+To display images from list of `UIImage`
+```swift
+// MARK: - UbudControllerDataSource
+
+func numberOfOPhotos(in controller: UbudController) -> Int {
+    return images.count
+}
+
+func imageSourceForItem(in controller: UbudController, atIndex index: Int) -> PhotoDataSource {
+    let image = images[index]
+    return .image(image)
+}
+```
+
+### UbudControllerDelegate
+Customize the `UbudController` style
+```swift
+// MARK: - UbudControllerDelegate
+
+func statusBarHidden(in controller: UbudController) -> Bool {
+    return false
+}
+
+func statusBarStyle(in controller: UbudController) -> UIStatusBarStyle {
+    return .lightContent
+}
+
+func dismissButtonContent(in controller: UbudController) -> DismissButtonContent {
+    return .text("Dismiss")
+}
+```
+
+### UbudControllerPaginationDelegate
+
+```swift
+enum ImagesPaginationStyle {
+    case textIndicator
+    case dotIndicator
+}
+```
+
+Customize the pagination indicator style
+```swift
+// MARK: - UbudControllerPaginationDelegate
+
+func imagesPaginationStyle(in controller: UbudController) -> ImagesPaginationStyle? {
+    return .dotIndicator
+}
+
+func imagesPaginationDidChange(in controller: UbudController, atIndex index: Int) {
+    /// Do anything on tapped image page content
+}
+```
 
 ## License
 Ubud is released under the [MIT License](https://github.com/lkmfz/Ubud/blob/master/LICENSE.md).
